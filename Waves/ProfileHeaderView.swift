@@ -29,7 +29,8 @@ class ProfileHeaderView:UICollectionReusableView{
     @IBOutlet weak var messageUserButton:UIButton!
     @IBOutlet weak var flagUserButton:UIButton!
     
-    var userCoverImageViewProperty = MutableProperty(UIImage())
+    var userCoverImageLinkProperty = MutableProperty(NSURL(string:""))
+    //    var userCoverImageViewProperty = MutableProperty(UIImage())
     var userImageViewProperty = MutableProperty(UIImage())
     
     var user:User!
@@ -37,14 +38,16 @@ class ProfileHeaderView:UICollectionReusableView{
     func setUpWith(user:User, completion: (result: Bool) -> Void){
         self.user = user
         
+        
         completion(result: true)
         
     }
     
+    
     override func awakeFromNib() {
         
-    
-
+        
+        
         
         userImageView.layer.borderWidth = 1
         userImageView.layer.masksToBounds = false
@@ -68,46 +71,83 @@ class ProfileHeaderView:UICollectionReusableView{
     
     func bindModel(){
         
-        self.userFirstNameLabel.text = self.user.firstName;
-        self.userLastNameLabel.text = self.user.lastName;
-        self.homeTownLabel.text = self.user.homeTown;
-        self.homeStateCountryLabel.text = self.user.homeCityState;
-        
-        
-        
-        
-        self.userCoverImageViewProperty
-            .producer
-            .startWithNext({
+        dispatch_async(dispatch_get_global_queue (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            
+            // self.userFirstNameLabel.text = self.user.firstName;
+            // self.userLastNameLabel.text = self.user.lastName;
+            //   self.homeTownLabel.text = self.user.homeTown;
+            //   self.homeStateCountryLabel.text = self.user.homeCityState;
+            
+            self.user.firstName.producer.startWithNext({
                 [weak self]
                 next in
-                dispatch_async(dispatch_get_main_queue(), {
-                    if let imageView = self!.coverImageView{
-                        imageView.image = next
-                        UIView.animateWithDuration(0.4, animations: {
-                            imageView.alpha = 1.0
-                            
+                
+                self?.userFirstNameLabel.text = next;
+                })
+            
+            self.user.lastName.producer.startWithNext({
+                [weak self]
+                next in
+                
+                self?.userLastNameLabel.text = next;
+                })
+            
+            self.user.homeCityState.producer.startWithNext({
+                [weak self]
+                next in
+                
+                self?.homeStateCountryLabel.text = next;
+                })
+            
+            self.user.firstName.producer.startWithNext({
+                [weak self]
+                next in
+                
+                self?.userFirstNameLabel.text = next;
+                })
+            
+            self.user.coverImageLink.producer.startWithNext({
+                [weak self]
+                next in
+                
+                if let check = self{
+                    
+                }
+                else{
+                    return
+                }
+                if let data = NSData(contentsOfURL: (next)!){
+                    
+                    if let image = UIImage(data:data){
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self!.coverImageView.image = image
+                            self!.coverImageView.alpha = 1.0;
                         })
-                        
                     }
-                })
+                }
                 
                 })
-        
-        self.userImageViewProperty
-            .producer
-            .startWithNext({
+            
+            
+            self.user.profileImageLink.producer.startWithNext({
                 [weak self]
                 next in
-                dispatch_async(dispatch_get_main_queue(), {
-                    if let imageView = self!.userImageView{
-                        imageView.image = next
-                        
+                if let data = NSData(contentsOfURL: (next)!){
+                    
+                    if let image = UIImage(data:data){
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self!.userImageView.image = image
+                        })
                     }
-                })
+                }
                 
                 })
-        
+            
+            
+            
+            
+        })
     }
+    
     
 }

@@ -11,22 +11,22 @@ import ReactiveCocoa
 
 struct City{
     
-    var name:String
-    var countryName:String
-    var stateName:String?
-    var location:(Float, Float)
-    var coverImageLink:NSURL
+    var name = MutableProperty("")
+    var countryName = MutableProperty("")
+    var stateName = MutableProperty("")
+    var location = MutableProperty((0.0, 0.0))
+    var coverImageLink = MutableProperty(NSURL(string: ""))
     
     var wavePreviews:[WavePreview]?
    // var hasFinishedLoadingWavePreviews:Bool
     var hasFinishedLoadingWavePreviews = MutableProperty(false)
     
-    init(withName:String, Location:(Float, Float), coverImageLink:NSURL, countryName:String, stateName:String?){
-        self.name = withName;
-        self.location = Location
-        self.coverImageLink = coverImageLink
-        self.countryName = countryName
-        self.stateName = stateName
+    init(withName:String, Location:(Double, Double), coverImageLink:NSURL, countryName:String, stateName:String?){
+        self.name.value = withName;
+        self.location.value = Location
+        self.coverImageLink.value = coverImageLink
+        self.countryName.value = countryName
+        self.stateName.value = stateName ?? ""
         
         self.hasFinishedLoadingWavePreviews.value = false
 //        dispatch_async(dispatch_get_main_queue(), {

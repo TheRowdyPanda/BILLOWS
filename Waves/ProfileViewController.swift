@@ -105,6 +105,15 @@ class ProfileViewController:UIViewController{
     
     func bindModel(){
         
+//        self.profileViewModel?.user.coverImageLink.signal.observeNext({
+//            
+//            next in
+//            
+//            
+//            
+//        })
+        
+        
 //        self.profileViewModel?.userCoverImageProperty
 //        .producer
 //            .startWithNext({
@@ -268,9 +277,7 @@ extension ProfileViewController:UICollectionViewDelegate, UICollectionViewDataSo
             headerView.setUpWith((self.profileViewModel?.user)!, completion: {
                 (result:Bool) in
                
-                    headerView.userCoverImageViewProperty = (self.profileViewModel?.userCoverImageProperty)!
-                
-                headerView.userImageViewProperty = (self.profileViewModel?.userProfileImageProperty)!
+                 //   headerView.userCoverImageViewProperty = (self.profileViewModel?.userCoverImageProperty)!
                 
          
 //                

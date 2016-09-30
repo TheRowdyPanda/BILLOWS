@@ -138,6 +138,18 @@ class GmailScraper: UIViewController{
 //        )
 //    }
     
+    func dispalyEmailSpecsWithTicket(ticket:GTLRServiceTicket, finishedWithObject labelsResponse:GTLRGmail_MessagePart, error: NSError?){
+       
+        if let error = error {
+            showAlert("Error", message: error.localizedDescription)
+            return
+        }
+        print(labelsResponse.body);
+        
+        
+    }
+    
+    
     func displayResultWithTicket2(ticket : GTLRServiceTicket,
                                  finishedWithObject labelsResponse : GTLRGmail_Message,
                                                     error : NSError?) {
@@ -151,25 +163,44 @@ class GmailScraper: UIViewController{
         
         print("Message")
         let snippet = labelsResponse.snippet
-        print(labelsResponse.payload)
+        
+        let bodyData = labelsResponse.payload?.parts?.first?.body
+        
+            
+        print(bodyData)
+        
+        var base64DataString:String! =  bodyData?.data
+        base64DataString = base64DataString.stringByReplacingOccurrencesOfString("_", withString: "/", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        base64DataString = base64DataString.stringByReplacingOccurrencesOfString("-", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        let decodedData = NSData(base64EncodedString: base64DataString, options:NSDataBase64DecodingOptions(rawValue: 0))
+        let decodedString = NSString(data: decodedData!, encoding: NSUTF8StringEncoding)
+        print(decodedString)
+        
+        
+        
         let since = (labelsResponse.internalDate?.doubleValue)!/1000.0;
         print("DATE")
+        
+
         
         print(NSDate(timeIntervalSince1970: since))
        
         
-        let wordChecker = ["Delta", "Airlines", "Flight"]
+        let wordChecker = ["Delta", "Airlines", "Flight", "eTicket"]
         
         for w in wordChecker{
             if((snippet?.lowercaseString.rangeOfString(w.lowercaseString)) != nil){
                 print(snippet)
-                
-                
+                let k1 = labelsResponse;
+                let k2 = k1.payload
                 
             }
         }
         
     }
+    
+    
     // Display the labels in the UITextView
     func displayResultWithTicket(ticket : GTLRServiceTicket,
                                  finishedWithObject labelsResponse : GTLRGmail_ListMessagesResponse,
@@ -204,6 +235,7 @@ class GmailScraper: UIViewController{
             let m3 = m2.identifier
             
             let query = GTLRGmailQuery_UsersMessagesGet.queryWithUserId("me", identifier: m3!)
+            
 
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                 

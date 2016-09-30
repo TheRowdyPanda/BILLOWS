@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="-589" y="-193"/>
         </scene>
-        <!--Sign Up View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="tkx-Lf-uPe">
             <objects>
-                <viewController restorationIdentifier="SignUpViewController_ID" storyboardIdentifier="SignUpViewController_ID" id="0P1-Z2-0E6" customClass="SignUpViewController" customModule="Waves" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SignInViewController_ID" storyboardIdentifier="SignInViewController_ID" id="0P1-Z2-0E6" customClass="SignInViewController" customModule="Waves" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OXC-TW-qII"/>
                         <viewControllerLayoutGuide type="bottom" id="98o-qE-J3z"/>
@@ -418,6 +418,66 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a8w-vi-fgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Gmail Import View Controller-->
+        <scene sceneID="L6K-e3-PLA">
+            <objects>
+                <viewController storyboardIdentifier="GmailImportViewController_ID" id="ZXm-MI-iyM" customClass="GmailImportViewController" customModule="Waves" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jak-9V-iTt"/>
+                        <viewControllerLayoutGuide type="bottom" id="l3X-AY-NpR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gbi-vg-TAV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXh-8X-BOt">
+                                <rect key="frame" x="8" y="28" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6Q-iJ-hsd">
+                                <rect key="frame" x="250" y="20" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JM-p8-gZO">
+                                <rect key="frame" x="20" y="50" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zhj-Ee-N25">
+                                <rect key="frame" x="0.0" y="236" width="600" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yXh-8X-BOt" firstAttribute="leading" secondItem="gbi-vg-TAV" secondAttribute="leading" constant="8" id="8XK-Rn-OmW"/>
+                            <constraint firstItem="7JM-p8-gZO" firstAttribute="top" secondItem="yXh-8X-BOt" secondAttribute="bottom" constant="8" id="GER-Mk-Qgy"/>
+                            <constraint firstItem="zhj-Ee-N25" firstAttribute="top" secondItem="7JM-p8-gZO" secondAttribute="bottom" constant="8" id="HWs-y0-Myy"/>
+                            <constraint firstItem="z6Q-iJ-hsd" firstAttribute="centerY" secondItem="yXh-8X-BOt" secondAttribute="centerY" id="Oyr-6r-XVv"/>
+                            <constraint firstAttribute="trailing" secondItem="zhj-Ee-N25" secondAttribute="trailing" id="VZj-cg-XvU"/>
+                            <constraint firstItem="l3X-AY-NpR" firstAttribute="top" secondItem="zhj-Ee-N25" secondAttribute="bottom" id="YkT-aC-s4t"/>
+                            <constraint firstItem="yXh-8X-BOt" firstAttribute="top" secondItem="Jak-9V-iTt" secondAttribute="bottom" constant="8" id="dLu-AE-MHW"/>
+                            <constraint firstItem="z6Q-iJ-hsd" firstAttribute="leading" secondItem="yXh-8X-BOt" secondAttribute="trailing" constant="8" id="f96-AC-wkf"/>
+                            <constraint firstItem="zhj-Ee-N25" firstAttribute="leading" secondItem="gbi-vg-TAV" secondAttribute="leading" id="fkQ-s6-rqh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="responseView" destination="zhj-Ee-N25" id="gDL-tx-FR2"/>
+                        <outlet property="searchButton" destination="7JM-p8-gZO" id="vHc-5P-CcB"/>
+                        <outlet property="updateLabel1" destination="yXh-8X-BOt" id="ojC-wP-ueF"/>
+                        <outlet property="updateLabel2" destination="z6Q-iJ-hsd" id="XtJ-Ux-iyJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qWv-PI-fwp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="775" y="-209"/>
         </scene>
     </scenes>
 </document>

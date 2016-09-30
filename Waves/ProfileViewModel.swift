@@ -15,29 +15,30 @@ class ProfileViewModel{
     
     
     var isLoadingMoreWaves = MutableProperty(false)
-    
-   // var userCoverImage = MutableProperty(UIImage())
-    var userCoverImageProperty  = MutableProperty(UIImage())
-    var userCoverImage:UIImage?
-    
-    var userProfileImageProperty = MutableProperty(UIImage())
-    var userProfileImage:UIImage?
+
     
     var user:User
     init(user:User){
         self.user = user
+
+        
         
         //self.loadUserCoverImage()
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             // do some task
-            self.loadUserCoverImage()
-            self.loadUserProfileImage()
-        });
+//            self.loadUserCoverImage()
+//            self.loadUserProfileImage()
+        //});
         
         
     }
     
+    
+    func bindUser(){
+        
+
+    }
     
     func loadMorePreviewsForUser(){
         
@@ -48,25 +49,6 @@ class ProfileViewModel{
             self.isLoadingMoreWaves.value = false
 
         }
-    }
-    
-    
-    func loadUserProfileImage(){
-        let imageLink = self.user.profileImageLink
-        let image = UIImage(data: NSData(contentsOfURL: imageLink!)!)
-        self.userProfileImageProperty.value = image!
-       // self.user = image2
-    }
-
-    
-    func loadUserCoverImage(){
-        
-        
-        let imageLink = self.user.coverImageLink
-        let image = UIImage(data: NSData(contentsOfURL: imageLink!)!)
-        let image2 = imageWithGradient(image)
-        self.userCoverImageProperty.value = image2
-        self.userCoverImage = image2
     }
     
     func imageWithGradient(image:UIImage!) -> UIImage{
@@ -176,12 +158,12 @@ class ProfileViewModel{
         
         let wavePreview = self.user.recentWavePreviews![indexPath.row]
         
-        let startString = wavePreview.name + " in "
+        let startString = wavePreview.name! + " in "
         
         let attributedString = NSMutableAttributedString(string:startString)
         
         let attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(15)]
-        let boldString = NSMutableAttributedString(string:wavePreview.cityName, attributes:attrs)
+        let boldString = NSMutableAttributedString(string:wavePreview.cityName!, attributes:attrs)
         
         attributedString.appendAttributedString(boldString)
         

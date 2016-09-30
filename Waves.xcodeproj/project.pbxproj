@@ -45,6 +45,14 @@
 		8EFBE03C1D9CDC40006FD731 /* CityTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE03B1D9CDC40006FD731 /* CityTableCell.swift */; };
 		8EFBE03E1D9CDC51006FD731 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE03D1D9CDC51006FD731 /* Attachment.swift */; };
 		8EFBE0401D9CDCFB006FD731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EFBE03F1D9CDCFB006FD731 /* Main.storyboard */; };
+		8EFBE0421D9DBA44006FD731 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0411D9DBA44006FD731 /* SignInViewController.swift */; };
+		8EFBE0441D9DBA51006FD731 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0431D9DBA51006FD731 /* SignInViewModel.swift */; };
+		8EFBE0461D9DC02B006FD731 /* GmailImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0451D9DC02B006FD731 /* GmailImportViewController.swift */; };
+		8EFBE0481D9DC086006FD731 /* GmailImportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0471D9DC086006FD731 /* GmailImportViewModel.swift */; };
+		8EFBE04A1D9DDEF1006FD731 /* WaveDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0491D9DDEF1006FD731 /* WaveDashboardViewModel.swift */; };
+		8EFBE04C1D9DF7B1006FD731 /* CityFocusHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE04B1D9DF7B0006FD731 /* CityFocusHeaderView.swift */; };
+		8EFBE04E1D9DF7C3006FD731 /* CityFocusHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EFBE04D1D9DF7C3006FD731 /* CityFocusHeaderView.xib */; };
+		8EFBE0501D9E5735006FD731 /* WaveDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE04F1D9E5735006FD731 /* WaveDashboardViewController.swift */; };
 		B80DCCDB9BA99DE2E0029B1B /* Pods_WavesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433C867F8B4F040D4FED5148 /* Pods_WavesUITests.framework */; };
 		F8732F9FFFF18A4F0B12AF13 /* Pods_WavesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 713C08907A6D3298874BAF6D /* Pods_WavesTests.framework */; };
 /* End PBXBuildFile section */
@@ -117,6 +125,14 @@
 		8EFBE03B1D9CDC40006FD731 /* CityTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityTableCell.swift; sourceTree = "<group>"; };
 		8EFBE03D1D9CDC51006FD731 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		8EFBE03F1D9CDCFB006FD731 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		8EFBE0411D9DBA44006FD731 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		8EFBE0431D9DBA51006FD731 /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		8EFBE0451D9DC02B006FD731 /* GmailImportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GmailImportViewController.swift; sourceTree = "<group>"; };
+		8EFBE0471D9DC086006FD731 /* GmailImportViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GmailImportViewModel.swift; sourceTree = "<group>"; };
+		8EFBE0491D9DDEF1006FD731 /* WaveDashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveDashboardViewModel.swift; sourceTree = "<group>"; };
+		8EFBE04B1D9DF7B0006FD731 /* CityFocusHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityFocusHeaderView.swift; sourceTree = "<group>"; };
+		8EFBE04D1D9DF7C3006FD731 /* CityFocusHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityFocusHeaderView.xib; sourceTree = "<group>"; };
+		8EFBE04F1D9E5735006FD731 /* WaveDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveDashboardViewController.swift; sourceTree = "<group>"; };
 		ACF2AABC076B3F8993B36028 /* Pods-Waves.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves.release.xcconfig"; path = "Pods/Target Support Files/Pods-Waves/Pods-Waves.release.xcconfig"; sourceTree = "<group>"; };
 		B9FA820B4A0C689DB7AD65FD /* Pods-WavesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WavesTests/Pods-WavesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -247,10 +263,16 @@
 				8EFBE02E1D9CDBD7006FD731 /* ProfileViewModel.swift */,
 				8EFBE0291D9CDBD0006FD731 /* SignUpViewController.swift */,
 				8EFBE02A1D9CDBD0006FD731 /* SignUpViewModel.swift */,
+				8EFBE0411D9DBA44006FD731 /* SignInViewController.swift */,
+				8EFBE0431D9DBA51006FD731 /* SignInViewModel.swift */,
 				8EFBE00C1D9CDAFF006FD731 /* CityFocusViewController.swift */,
 				8EFBE00D1D9CDAFF006FD731 /* CityFocusViewModel.swift */,
 				8EFBE0081D9CDAEB006FD731 /* CityListViewController.swift */,
 				8EFBE0091D9CDAEB006FD731 /* CityListViewModel.swift */,
+				8EFBE0471D9DC086006FD731 /* GmailImportViewModel.swift */,
+				8EFBE0451D9DC02B006FD731 /* GmailImportViewController.swift */,
+				8EFBE0491D9DDEF1006FD731 /* WaveDashboardViewModel.swift */,
+				8EFBE04F1D9E5735006FD731 /* WaveDashboardViewController.swift */,
 			);
 			name = "View Controllers and Models";
 			sourceTree = "<group>";
@@ -281,6 +303,8 @@
 				8EFBE0161D9CDB6B006FD731 /* WavePreviewCell.xib */,
 				8EFBE0231D9CDBB9006FD731 /* UserPreviewCell.swift */,
 				8EFBE03B1D9CDC40006FD731 /* CityTableCell.swift */,
+				8EFBE04B1D9DF7B0006FD731 /* CityFocusHeaderView.swift */,
+				8EFBE04D1D9DF7C3006FD731 /* CityFocusHeaderView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -408,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E670A761D9CCF93000C85B7 /* LaunchScreen.storyboard in Resources */,
+				8EFBE04E1D9DF7C3006FD731 /* CityFocusHeaderView.xib in Resources */,
 				8EFBE0341D9CDC09006FD731 /* ProfileHeaderView.xib in Resources */,
 				8EFBE0181D9CDB6B006FD731 /* WavePreviewCell.xib in Resources */,
 				8EFBE0401D9CDCFB006FD731 /* Main.storyboard in Resources */,
@@ -560,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EFBE0441D9DBA51006FD731 /* SignInViewModel.swift in Sources */,
 				8E670A6B1D9CCF93000C85B7 /* ViewController.swift in Sources */,
 				8EFBE0171D9CDB6B006FD731 /* WavePreviewCell.swift in Sources */,
 				8EFBE0131D9CDB42006FD731 /* YSegmentedControl.swift in Sources */,
@@ -568,19 +594,24 @@
 				8EFBE0261D9CDBC2006FD731 /* UserPreview.swift in Sources */,
 				8EFBE02F1D9CDBD7006FD731 /* ProfileViewController.swift in Sources */,
 				8EFBE03C1D9CDC40006FD731 /* CityTableCell.swift in Sources */,
+				8EFBE0421D9DBA44006FD731 /* SignInViewController.swift in Sources */,
 				8EFBE0371D9CDC19006FD731 /* Message.swift in Sources */,
 				8EFBE0331D9CDC09006FD731 /* ProfileHeaderView.swift in Sources */,
 				8E670A691D9CCF93000C85B7 /* AppDelegate.swift in Sources */,
 				8EFBE0381D9CDC19006FD731 /* MessageViewModel.swift in Sources */,
 				8EFBE01E1D9CDB9D006FD731 /* WavePreview.swift in Sources */,
 				8EFBE0211D9CDBA5006FD731 /* Wave.swift in Sources */,
+				8EFBE04C1D9DF7B1006FD731 /* CityFocusHeaderView.swift in Sources */,
 				8EFBE0071D9CDACC006FD731 /* FirstViewController.swift in Sources */,
 				8EFBE01B1D9CDB75006FD731 /* WavePreviewHeaderView.swift in Sources */,
 				8E670A711D9CCF93000C85B7 /* Waves.xcdatamodeld in Sources */,
 				8EFBE00B1D9CDAEB006FD731 /* CityListViewModel.swift in Sources */,
+				8EFBE0481D9DC086006FD731 /* GmailImportViewModel.swift in Sources */,
 				8EFBE02C1D9CDBD0006FD731 /* SignUpViewModel.swift in Sources */,
+				8EFBE04A1D9DDEF1006FD731 /* WaveDashboardViewModel.swift in Sources */,
 				8EFBE0301D9CDBD7006FD731 /* ProfileViewModel.swift in Sources */,
 				8EFBE0111D9CDB16006FD731 /* City.swift in Sources */,
+				8EFBE0501D9E5735006FD731 /* WaveDashboardViewController.swift in Sources */,
 				8EFBE02B1D9CDBD0006FD731 /* SignUpViewController.swift in Sources */,
 				8EFBE0221D9CDBA5006FD731 /* WaveChat.swift in Sources */,
 				8EFBE00E1D9CDAFF006FD731 /* CityFocusViewController.swift in Sources */,
@@ -588,6 +619,7 @@
 				8E670A9E1D9CCFE1000C85B7 /* HomeViewController.swift in Sources */,
 				8EFBE00A1D9CDAEB006FD731 /* CityListViewController.swift in Sources */,
 				8EFBE03E1D9CDC51006FD731 /* Attachment.swift in Sources */,
+				8EFBE0461D9DC02B006FD731 /* GmailImportViewController.swift in Sources */,
 				8EFBE0281D9CDBC7006FD731 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

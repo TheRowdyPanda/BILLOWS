@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="CityFocusHeaderView_ID" id="iN0-l3-epB" customClass="CityFocusHeaderView" customModule="Waves" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNU-VL-ZQv">
+                    <rect key="frame" x="10" y="10" width="46" height="30"/>
+                    <state key="normal" title="Back"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kU3-t8-MGt">
+                    <rect key="frame" x="300" y="10" width="46" height="30"/>
+                    <state key="normal" title="Search"/>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4s3-Q2-sOM">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
+                    <color key="backgroundColor" red="1" green="0.50759943181818179" blue="0.32443181818181815" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="4s3-Q2-sOM" secondAttribute="height" multiplier="15:8" id="0nq-k1-97S"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="kU3-t8-MGt" secondAttribute="trailing" constant="10" id="1gO-YU-O3a"/>
+                <constraint firstItem="jNU-VL-ZQv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="APr-tc-KEu"/>
+                <constraint firstItem="4s3-Q2-sOM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LrV-KG-Iyb"/>
+                <constraint firstItem="kU3-t8-MGt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Lvd-kz-1KD"/>
+                <constraint firstItem="jNU-VL-ZQv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="c28-fd-aPS"/>
+                <constraint firstItem="4s3-Q2-sOM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hfZ-UT-7Kd"/>
+                <constraint firstAttribute="trailing" secondItem="4s3-Q2-sOM" secondAttribute="trailing" id="yBX-H1-fDv"/>
+            </constraints>
+            <connections>
+                <outlet property="backButton" destination="jNU-VL-ZQv" id="tUe-G9-mIA"/>
+                <outlet property="cityCoverImageView" destination="4s3-Q2-sOM" id="Kag-tJ-7ku"/>
+                <outlet property="searchButton" destination="kU3-t8-MGt" id="EaS-hG-Xde"/>
+            </connections>
+        </view>
+    </objects>
+</document>

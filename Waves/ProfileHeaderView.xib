@@ -274,7 +274,7 @@
             </variation>
             <connections>
                 <outlet property="addFriendButton" destination="0nC-Pd-HSb" id="Ske-Mk-Iyh"/>
-                <outlet property="coverImageView" destination="Mq1-wY-auY" id="k3t-tW-4VA"/>
+                <outlet property="coverImageView" destination="Mq1-wY-auY" id="5ys-h8-iN0"/>
                 <outlet property="flagUserButton" destination="rFh-8q-Zrq" id="xcX-Tb-W7C"/>
                 <outlet property="homeStateCountryLabel" destination="oWS-BC-0gA" id="uIk-n8-v2E"/>
                 <outlet property="homeTownLabel" destination="LKq-m5-ekZ" id="06A-Lb-x2M"/>

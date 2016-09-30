@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit.UIFont
 
 class CityFocusViewModel{
     
@@ -17,5 +18,31 @@ class CityFocusViewModel{
         
         
     }
+    
+    func wavePreviewCellForIndex(indexPath:NSIndexPath, cell:WavePreviewCell)->WavePreviewCell{
+        
+        let wavePreview = self.city.wavePreviews![indexPath.row]
+        
+        let startString = wavePreview.name! + " in "
+        
+        let attributedString = NSMutableAttributedString(string:startString)
+        
+        
+        
+        let attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(15)]
+        let boldString = NSMutableAttributedString(string:wavePreview.cityName!, attributes:attrs)
+        
+        attributedString.appendAttributedString(boldString)
+        
+        
+        
+        cell.waveNameLabel.attributedText = attributedString
+        cell.cityImageLink = wavePreview.imageLink
+        
+        
+        return cell
+        
+    }
+    
     
 }

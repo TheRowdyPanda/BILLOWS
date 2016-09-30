@@ -7,23 +7,26 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 
 struct User{
     
-    var firstName:String
-    var lastName:String
-    var homeTown:String?
-    var homeTownCoordinates:(Float, Float)?
-    var homeCityState:String?
-    var coverImageLink:NSURL?
-    var profileImageLink:NSURL?
+    var userId = MutableProperty("")
+    var firstName = MutableProperty("")
+    var lastName = MutableProperty("")
+    var homeTown = MutableProperty("")
     
-    var numberWaves:Int?
-    var numberMiles:Int?
-    var numberFriends:Int?
+    var homeTownCoordinates = MutableProperty((0.0, 0.0))
+   // var homeTownCoordinates:(Float, Float)?
+    var homeCityState = MutableProperty("")
+    //var coverImageLink:NSURL?
+    var coverImageLink = MutableProperty(NSURL(string:""))
+    var profileImageLink = MutableProperty(NSURL(string:""))
     
-    
+    var numberWaves = MutableProperty(0)
+    var numberMiles = MutableProperty(0)
+    var numberFriends = MutableProperty(0)
     var friends:[User]?
 
     
@@ -36,14 +39,41 @@ struct User{
     
     init(withId:String){
         
-        firstName = "Rijul"
-        lastName = "Gupta"
+        self.userId.value = withId
+
+
+        self.loadInfo()
+//        firstName = "Rijul"
+//        lastName = "Gupta"
     }
     
-    init(){
-        firstName = ""
-        lastName = ""
+    func loadInfo(){
+
+        self.coverImageLink.producer.startWithNext({
+            
+            next in
+            
+        })
+        
+        
+        //simulates server request
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+                
+            
+            self.coverImageLink.value = NSURL(string: "http://1.bp.blogspot.com/-SmUEFeHmKEQ/UcbZrhICk5I/AAAAAAAAQDk/so64PKEv7Ko/s1600/url444.jpg")
+
+        }
     }
+    
+    func loadInformationWithId(){
+        
+    }
+//    
+//    init(){
+//        firstName = ""
+//        lastName = ""
+//    }
     
     
     func loadMoreWavePreviews(completion:(result:Bool)->Void){

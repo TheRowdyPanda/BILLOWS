@@ -64,13 +64,16 @@ class FirstViewController: UIViewController {
         
         switch k{
         case 1:
-            self.goToMessageView()
+            self.goToScraperView()
             return
         case 2:
              self.goToSignInView()
             return
         case 3:
             self.goToCityListView()
+            return
+        case 4:
+            self.goToWaveDashboardView()
             return
         default:
             print("IFJIFJ")
@@ -79,10 +82,27 @@ class FirstViewController: UIViewController {
         
     }
     
+    func goToWaveDashboardView(){
+        
+//        let w = Wave(withId: "id1", completion: {
+//            (result:Bool) in
+//        })
+        
+        let waveDModel = WaveDashboardViewModel(withId:"id1", completion: {
+            (result:Bool) in
+        })
+        
+        
+    }
+    
     func goToMessageView(){
+    }
+    
+    func goToScraperView(){
+        
         
                 /*weak var*/let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let gvc = mainStoryboard.instantiateViewControllerWithIdentifier("GmailScraper_ID") as! GmailScraper
+                let gvc = mainStoryboard.instantiateViewControllerWithIdentifier("GmailImportViewController_ID") as! GmailImportViewController
         
         
                 self.navigationController?.pushViewController(gvc, animated: false)
@@ -116,21 +136,21 @@ class FirstViewController: UIViewController {
     func goToSignInView(){
         
         
-        let signUpViewModel = SignUpViewModel()
+        let signInViewModel = SignInViewModel()
         
         
-        signUpViewModel.userHomeTown = ""
+        signInViewModel.userHomeTown = ""
         
         /*weak var*/let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        /*weak var*/let signUpViewController = mainStoryboard.instantiateViewControllerWithIdentifier("SignUpViewController_ID") as! SignUpViewController
-        signUpViewController.firstViewDelegate = self
-        signUpViewController.setUpWith(signUpViewModel){
+        /*weak var*/let signInViewController = mainStoryboard.instantiateViewControllerWithIdentifier("SignInViewController_ID") as! SignInViewController
+        signInViewController.firstViewDelegate = self
+        signInViewController.setUpWith(signInViewModel){
             // [weak self]
             (result:Bool) in
             
             
-            (self.navigationController?.pushViewController(signUpViewController, animated: false))!
+            (self.navigationController?.pushViewController(signInViewController, animated: false))!
             
         }
         

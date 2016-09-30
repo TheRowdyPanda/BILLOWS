@@ -106,16 +106,16 @@ class CityListViewController: UIViewController {
         
         
         
-        let segmentedHeight:CGFloat = 44.0;
+        let segmentedHeight:CGFloat = 54.0;
         
-        let k1 = CGRect(x: 0.0, y: 64.0, width: self.view.frame.width, height: 44)
+
         let k2:[String] = ["Latest", "Trending", "Featured"]
         let segmented = YSSegmentedControl(
             frame: CGRect(
                 x: 0,
-                y: 64,
+                y: segmentedHeight + 20.0,
                 width: view.frame.size.width,
-                height: 44),
+                height: segmentedHeight),
             titles:k2,
             action: {
                 control, index in
@@ -130,13 +130,15 @@ class CityListViewController: UIViewController {
         // self.navigationController?.navigationBar.addSubview(segmented)
         // self.view.addSubview(segmented)
         //   self.view.addSubview(segmented)
-        
-        var navBar = self.navigationController?.navigationBar
-        var navBarHeight = navBar?.frame.height
-        var ProgressFrame = segmented.frame
-        var pSetX = ProgressFrame.origin.x
-        var pSetY = CGFloat(navBarHeight!)
-        var pSetWidth = self.view.frame.width
+//        
+//        var navBar = self.navigationController?.navigationBar
+//        var navBarHeight = navBar?.frame.height
+//        var ProgressFrame = segmented.frame
+//        var pSetX = ProgressFrame.origin.x
+//        var pSetY = CGFloat(navBarHeight!)
+//        var pSetWidth = self.view.frame.width
+//        
+//        
         
         segmented.frame = CGRectMake(0, 0, self.view.frame.width, segmentedHeight)
         
@@ -161,9 +163,15 @@ class CityListViewController: UIViewController {
         segmented.appearance = appearance
         
         //how to add custom images to our custom segmented controller
-        let v = UIView(frame: CGRect(x: 1.0, y: 1.0, width: 20.0, height: 20.0))
+        
+        let viewWidth:CGFloat = 28.0;
+        let middlex:CGFloat = (((self.view.frame.width/3.0) - viewWidth)/2.0)
+        let v = UIView(frame: CGRect(x: middlex, y: -5.0, width: viewWidth, height: viewWidth))
         v.backgroundColor = UIColor.yellowColor()
         segmented.items.first?.label.addSubview(v)
+        
+        let lFrame = segmented.items.first?.label.frame;
+        segmented.items.first?.label.frame = CGRectMake((lFrame?.origin.x)!, (lFrame?.origin.y)! + 10.0, (lFrame?.width)!, (lFrame?.height)!);
         
         
         self.view.addSubview(segmented)
@@ -283,15 +291,13 @@ class CityListViewController: UIViewController {
         
        // let city = self.cityListViewModel.cityToSend!
         var user = User(withId: "289192");
-        user.firstName = "Rijul"
-        user.lastName = "Gupta"
-        user.homeTown = "San Francisco"
-        user.homeCityState = "CA"
-        user.numberFriends = 23
-        user.numberMiles = 5002
-        user.numberWaves = wavePs.count
-        user.coverImageLink = NSURL(string: "http://1.bp.blogspot.com/-SmUEFeHmKEQ/UcbZrhICk5I/AAAAAAAAQDk/so64PKEv7Ko/s1600/url444.jpg")
-        user.profileImageLink = NSURL(string: "http://1.bp.blogspot.com/-SmUEFeHmKEQ/UcbZrhICk5I/AAAAAAAAQDk/so64PKEv7Ko/s1600/url444.jpg")
+        user.firstName.value = "Rijul"
+        user.lastName.value = "Gupta"
+        user.homeTown.value = "San Francisco"
+        user.homeCityState.value = "CA"
+        user.numberFriends.value = 23
+        user.numberMiles.value = 5002
+        user.numberWaves.value = wavePs.count
         
         user.recentWavePreviews = wavePs
         
@@ -299,6 +305,7 @@ class CityListViewController: UIViewController {
         
         let profileViewModel = ProfileViewModel(user: user)
         
+        profileViewModel.bindUser()
 
        
         

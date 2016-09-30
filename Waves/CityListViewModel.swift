@@ -39,15 +39,15 @@ class CityListViewModel{
         let city = cities[indexPath.row]
         
         
-        cell.cityNameLabel.text = city.name
+        cell.cityNameLabel.text = city.name.value
         cell.coverImage.image = nil
-        cell.cityImageLink = city.coverImageLink
+        cell.cityImageLink = city.coverImageLink.value
         
-        if(city.countryName == "USA"){
-            cell.countryNameLabel.text = city.stateName
+        if(city.countryName.value == "USA"){
+            cell.countryNameLabel.text = city.stateName.value
         }
         else{
-            cell.countryNameLabel.text = city.countryName
+            cell.countryNameLabel.text = city.countryName.value
         }
         
         
@@ -162,7 +162,7 @@ class CityListViewModel{
             let wavePs = [waveP1, waveP2, waveP3, waveP4, waveP5, waveP6, waveP7, ]
             
             
-            let oldIndex = self.cities.indexOf{$0.name == city.name}
+            let oldIndex = self.cities.indexOf{$0.name.value == city.name.value}
             
             self.cities[oldIndex!].wavePreviews = wavePs
             

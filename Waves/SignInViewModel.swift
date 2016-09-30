@@ -1,22 +1,21 @@
 //
-//  SignUpViewModel.swift
+//  SignInViewModel.swift
 //  Waves
 //
-//  Created by Rijul Gupta on 9/13/16.
+//  Created by Rijul Gupta on 9/29/16.
 //  Copyright © 2016 Rijul Gupta. All rights reserved.
 //
 
 import Foundation
 import ReactiveCocoa
 
-
-class SignUpViewModel{
+class SignInViewModel{
 
     
     var fakeEmail = "Erlich.Bachman@piedpiper.com"
     var fakePassword = "ThisGuyFucks88"
     
-
+    
     var userEmailString = MutableProperty("")
     var userPasswordString = MutableProperty("")
     
@@ -29,9 +28,9 @@ class SignUpViewModel{
     
     
     var hasSentData = MutableProperty(false)
-   
     
-//
+    
+    //
     init(){
         userEmailString.signal.observeNext({[weak self] next in
             print("User edited email text field:\(next)")
@@ -41,7 +40,7 @@ class SignUpViewModel{
                 self!.hasCompletedFields.value = false
                 
             }
-        })
+            })
         
         userPasswordString.signal.observeNext({[weak self] next in
             print("User edited password text field:\(next)")
@@ -67,6 +66,6 @@ class SignUpViewModel{
         
         //self.showNextView()
     }
-
+    
     
 }

@@ -11,21 +11,25 @@ import Foundation
 
 struct WavePreview{
     
-    var name:String
-    var cityName:String
+    var waveId:String
+    var name:String?
+    var cityName:String?
     var imageLink:NSURL?
     
     init(wave:Wave){
         self.name = ""
         self.cityName = ""
+        self.waveId = wave.waveId.value;
     }
     
     init(json:NSDictionary){
+        self.waveId = ""
         self.name = ""
         self.cityName = ""
     }
     
     init(){
+        self.waveId = ""
         self.name = ""
         self.cityName = ""
     }
