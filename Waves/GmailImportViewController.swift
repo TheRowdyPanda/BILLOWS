@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import GTMOAuth2
+import GoogleAPIClientForREST
 
 class GmailImportViewController:UIViewController{
     
     
+    var gmailImportModel:GmailImportViewModel?
     @IBOutlet weak var updateLabel1:UILabel!
     @IBOutlet weak var updateLabel2:UILabel!
     
@@ -21,7 +24,58 @@ class GmailImportViewController:UIViewController{
         
         responseView.userInteractionEnabled = false;
         
+        
+        gmailImportModel?.setupScraper({
+            (result:Bool) in
+            
+            if(result == true){
+                self.authenticateGmailScraper()
+            }
+            
+        })
+        
+        
     }
+    
+    func authenticateGmailScraper(){
+        
+        gmailImportModel?.authenticateScraper2({
+            (result:Bool) in
+
+            if(result == true){
+                
+                
+                self.presentLoginController()
+            }
+        })
+        
+    }
+    
+    func presentLoginController(){
+        let authCon = gmailImportModel?.gmailScraper?.createAuthController()
+        presentViewController(authCon!, animated: true, completion: nil)
+    }
+    
+    // Handle completion of the authorization process, and update the Gmail API
+    // with the new credentials.
+    func viewController(vc : UIViewController,
+                        finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?) {
+        
+        if let error = error {
+            
+            gmailImportModel?.gmailScraper!.service.authorizer = nil
+           // service.authorizer = nil
+           // showAlert("Authentication Error", message: error.localizedDescription)
+            return
+        }
+        
+        gmailImportModel?.gmailScraper!.service.authorizer = nil
+        //service.authorizer = authResult
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+   
     
     
 }

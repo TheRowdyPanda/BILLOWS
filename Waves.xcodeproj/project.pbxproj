@@ -53,6 +53,8 @@
 		8EFBE04C1D9DF7B1006FD731 /* CityFocusHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE04B1D9DF7B0006FD731 /* CityFocusHeaderView.swift */; };
 		8EFBE04E1D9DF7C3006FD731 /* CityFocusHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EFBE04D1D9DF7C3006FD731 /* CityFocusHeaderView.xib */; };
 		8EFBE0501D9E5735006FD731 /* WaveDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE04F1D9E5735006FD731 /* WaveDashboardViewController.swift */; };
+		8EFBE0521D9F00D9006FD731 /* UserPreviewFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0511D9F00D9006FD731 /* UserPreviewFaceView.swift */; };
+		8EFBE0541DA0FDB8006FD731 /* WaveLoaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0531DA0FDB8006FD731 /* WaveLoaderDelegate.swift */; };
 		B80DCCDB9BA99DE2E0029B1B /* Pods_WavesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433C867F8B4F040D4FED5148 /* Pods_WavesUITests.framework */; };
 		F8732F9FFFF18A4F0B12AF13 /* Pods_WavesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 713C08907A6D3298874BAF6D /* Pods_WavesTests.framework */; };
 /* End PBXBuildFile section */
@@ -133,6 +135,8 @@
 		8EFBE04B1D9DF7B0006FD731 /* CityFocusHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityFocusHeaderView.swift; sourceTree = "<group>"; };
 		8EFBE04D1D9DF7C3006FD731 /* CityFocusHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityFocusHeaderView.xib; sourceTree = "<group>"; };
 		8EFBE04F1D9E5735006FD731 /* WaveDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveDashboardViewController.swift; sourceTree = "<group>"; };
+		8EFBE0511D9F00D9006FD731 /* UserPreviewFaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreviewFaceView.swift; sourceTree = "<group>"; };
+		8EFBE0531DA0FDB8006FD731 /* WaveLoaderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveLoaderDelegate.swift; sourceTree = "<group>"; };
 		ACF2AABC076B3F8993B36028 /* Pods-Waves.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves.release.xcconfig"; path = "Pods/Target Support Files/Pods-Waves/Pods-Waves.release.xcconfig"; sourceTree = "<group>"; };
 		B9FA820B4A0C689DB7AD65FD /* Pods-WavesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WavesTests/Pods-WavesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -281,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				8EFBE0391D9CDC25006FD731 /* GmailScraper.swift */,
+				8EFBE0531DA0FDB8006FD731 /* WaveLoaderDelegate.swift */,
 			);
 			name = "Utility Classes";
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 				8EFBE03B1D9CDC40006FD731 /* CityTableCell.swift */,
 				8EFBE04B1D9DF7B0006FD731 /* CityFocusHeaderView.swift */,
 				8EFBE04D1D9DF7C3006FD731 /* CityFocusHeaderView.xib */,
+				8EFBE0511D9F00D9006FD731 /* UserPreviewFaceView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -616,8 +622,10 @@
 				8EFBE0221D9CDBA5006FD731 /* WaveChat.swift in Sources */,
 				8EFBE00E1D9CDAFF006FD731 /* CityFocusViewController.swift in Sources */,
 				8EFBE03A1D9CDC25006FD731 /* GmailScraper.swift in Sources */,
+				8EFBE0521D9F00D9006FD731 /* UserPreviewFaceView.swift in Sources */,
 				8E670A9E1D9CCFE1000C85B7 /* HomeViewController.swift in Sources */,
 				8EFBE00A1D9CDAEB006FD731 /* CityListViewController.swift in Sources */,
+				8EFBE0541DA0FDB8006FD731 /* WaveLoaderDelegate.swift in Sources */,
 				8EFBE03E1D9CDC51006FD731 /* Attachment.swift in Sources */,
 				8EFBE0461D9DC02B006FD731 /* GmailImportViewController.swift in Sources */,
 				8EFBE0281D9CDBC7006FD731 /* User.swift in Sources */,

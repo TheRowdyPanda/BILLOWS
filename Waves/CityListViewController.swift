@@ -227,12 +227,18 @@ class CityListViewController: UIViewController {
 //            return
 //        }
         if(self.hasLoadedInfoForNextViewModel == false){
-            return
+            //return
         }
         if(cityIndex == nil){
             return
         }
+        
         let city = self.cityListViewModel.cityToSend!
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
+                dispatch_after(delayTime, dispatch_get_main_queue()) {
+        
+       // self.cityListViewModel.cityToSend!.name.value = "FUCK ME!"
+        }
        // let city = self.cityListViewModel.cityForIndexPath(cityIndex!)
 
         let cityFocusViewModel = CityFocusViewModel(withCity: city)
@@ -378,44 +384,44 @@ extension CityListViewController:UITableViewDelegate, UITableViewDataSource{
         
         
         let cell = self.cityListViewModel.cityCellForIndexPath(indexPath, cell:preCell)
-        
-        let url = cell.cityImageLink
-        var image = self.imageCache[url]
-        if( image == nil ) {
- 
-            // If the image does not exist, we testImage to download it
-            var imgURL:NSURL = url
-            
-            // Download an NSData representation of the image at the URL
-            let request: NSURLRequest = NSURLRequest(URL: imgURL)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
-                if error == nil {
-                    image = UIImage(data: data!)
-                    
-                    // Store the image in to our cache
-                    self.imageCache[url] = image
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? CityTableCell{
-                            cellToUpdate.coverImage?.image = image
-                            
-                        }
-                    })
-                }
-                else {
-                    print("Error: \(error!.localizedDescription)")
-                  //  Crashlytics.sharedInstance().recordError(error!)
-                }
-            })
-            
-        }
-        else {
-            dispatch_async(dispatch_get_main_queue(), {
-                if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? CityTableCell{
-                    cellToUpdate.coverImage?.image = image
-                    
-                }
-            })
-        }
+//        
+//        let url = cell.cityImageLink
+//        var image = self.imageCache[url]
+//        if( image == nil ) {
+// 
+//            // If the image does not exist, we testImage to download it
+//            var imgURL:NSURL = url
+//            
+//            // Download an NSData representation of the image at the URL
+//            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+//            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+//                if error == nil {
+//                    image = UIImage(data: data!)
+//                    
+//                    // Store the image in to our cache
+//                    self.imageCache[url] = image
+//                    dispatch_async(dispatch_get_main_queue(), {
+//                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? CityTableCell{
+//                            cellToUpdate.coverImage?.image = image
+//                            
+//                        }
+//                    })
+//                }
+//                else {
+//                    print("Error: \(error!.localizedDescription)")
+//                  //  Crashlytics.sharedInstance().recordError(error!)
+//                }
+//            })
+//            
+//        }
+//        else {
+//            dispatch_async(dispatch_get_main_queue(), {
+//                if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? CityTableCell{
+//                    cellToUpdate.coverImage?.image = image
+//                    
+//                }
+//            })
+//        }
         
         
         

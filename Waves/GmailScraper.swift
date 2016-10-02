@@ -10,7 +10,7 @@ import Foundation
 import GoogleAPIClientForREST
 import GTMOAuth2
 
-class GmailScraper: UIViewController{
+class GmailScraper:UIViewController{
     private let kKeychainItemName = "Gmail API"
     private let kClientID = "134050187459-p3ekcrrjr5d8u0222q1mml423f7s0r74.apps.googleusercontent.com"
     
@@ -19,54 +19,65 @@ class GmailScraper: UIViewController{
     private let scopes = [kGTLRAuthScopeGmailReadonly]
     
     
-    private let service = GTLRGmailService()
-    let output = UITextView()
+    public let service = GTLRGmailService()
     
-    override func viewDidLoad() {
-        
-        output.frame = view.bounds
-        output.editable = false
-        output.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-        output.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-        
-        view.addSubview(output);
-        
-        
-        self.authenticate()
-    }
+//    override func viewDidLoad() {
+//        
+//        output.frame = view.bounds
+//        output.editable = false
+//        output.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+//        output.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+//        
+//        view.addSubview(output);
+//        
+//        
+//        self.authenticate()
+//    }
+//    
+//    override func viewDidAppear(animated: Bool) {
+//        self.authenticate2()
+//    }
+//    
     
-    override func viewDidAppear(animated: Bool) {
-        self.authenticate2()
-    }
-    func authenticate(){
+    func authenticate(completion:(result:Bool)->Void){
         
         if let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychainForName(
             kKeychainItemName,
             clientID: kClientID,
             clientSecret: nil) {
             service.authorizer = auth
+            completion(result:true)
+            return
         }
+        
+        completion(result:false)
+        return
     }
     
-    func authenticate2(){
+    func authenticate2(completion:(tag:Int)->Void){
         
         if let authorizer = service.authorizer,
             canAuth = authorizer.canAuthorize where canAuth {
-            fetchLabels()
+            completion(tag:1)
+            return
+          //  fetchLabels()
         } else {
-            presentViewController(
-                createAuthController(),
-                animated: true,
-                completion: nil
-            )
+            completion(tag:2)
+            return
+//            presentViewController(
+//                createAuthController(),
+//                animated: true,
+//                completion: nil
+//            )
         }
-        
+        completion(tag:3)
+        return
 
     }
     
         // Construct a query and get a list of upcoming labels from the gmail API
         func fetchLabels() {
-            output.text = "Getting labels..."
+           // output.text = "Getting labels..."
             
             //let query = GTLRGmailQuery_UsersMessagesList.queryWithUserId("me")
             
@@ -82,12 +93,10 @@ class GmailScraper: UIViewController{
 //            service.setValue("03731952486502015387", forKey: "pageToken")
             
             
-             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            self.service.executeQuery(query,
-                                 delegate: self,
-                                 didFinishSelector: "displayResultWithTicket:finishedWithObject:error:"
+//             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+    self.service.executeQuery(query, delegate: self, didFinishSelector:Selector("displayResultWithTicket:finishedWithObject:error:")
             )
-            })
+          //  })
             
         }
     
@@ -141,7 +150,7 @@ class GmailScraper: UIViewController{
     func dispalyEmailSpecsWithTicket(ticket:GTLRServiceTicket, finishedWithObject labelsResponse:GTLRGmail_MessagePart, error: NSError?){
        
         if let error = error {
-            showAlert("Error", message: error.localizedDescription)
+            //showAlert("Error", message: error.localizedDescription)
             return
         }
         print(labelsResponse.body);
@@ -157,7 +166,7 @@ class GmailScraper: UIViewController{
         
         
         if let error = error {
-            showAlert("Error", message: error.localizedDescription)
+            //showAlert("Error", message: error.localizedDescription)
             return
         }
         
@@ -168,8 +177,12 @@ class GmailScraper: UIViewController{
         
             
         print(bodyData)
+        var base64DataString:String! = ""
+            
+        if let str = bodyData?.data{
+            base64DataString =  str
+        }
         
-        var base64DataString:String! =  bodyData?.data
         base64DataString = base64DataString.stringByReplacingOccurrencesOfString("_", withString: "/", options: NSStringCompareOptions.LiteralSearch, range: nil)
         base64DataString = base64DataString.stringByReplacingOccurrencesOfString("-", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
@@ -203,11 +216,10 @@ class GmailScraper: UIViewController{
     
     // Display the labels in the UITextView
     func displayResultWithTicket(ticket : GTLRServiceTicket,
-                                 finishedWithObject labelsResponse : GTLRGmail_ListMessagesResponse,
-                                                    error : NSError?) {
+                                 finishedWithObject labelsResponse : GTLRGmail_ListMessagesResponse, error : NSError?) {
         
         if let error = error {
-            showAlert("Error", message: error.localizedDescription)
+            //showAlert("Error", message: error.localizedDescription)
             return
         }
         
@@ -245,7 +257,6 @@ class GmailScraper: UIViewController{
             })
         }
         var labelString = ""
-        output.text = labelString
     }
     
 
@@ -277,7 +288,7 @@ class GmailScraper: UIViewController{
     
 //    
     // Creates the auth controller for authorizing access to Gmail API
-    private func createAuthController() -> GTMOAuth2ViewControllerTouch {
+    public func createAuthController() -> GTMOAuth2ViewControllerTouch {
         let scopeString = scopes.joinWithSeparator(" ")
         return GTMOAuth2ViewControllerTouch(
             scope: scopeString,
@@ -289,36 +300,23 @@ class GmailScraper: UIViewController{
         )
     }
     
-    // Handle completion of the authorization process, and update the Gmail API
-    // with the new credentials.
-    func viewController(vc : UIViewController,
-                        finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?) {
-        
-        if let error = error {
-            service.authorizer = nil
-            showAlert("Authentication Error", message: error.localizedDescription)
-            return
-        }
-        
-        service.authorizer = authResult
-        dismissViewControllerAnimated(true, completion: nil)
-    }
+    
     
     // Helper for showing an alert
-    func showAlert(title : String, message: String) {
-        let alert = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: UIAlertControllerStyle.Alert
-        )
-        let ok = UIAlertAction(
-            title: "OK",
-            style: UIAlertActionStyle.Default,
-            handler: nil
-        )
-        alert.addAction(ok)
-        presentViewController(alert, animated: true, completion: nil)
-    }
+//    func showAlert(title : String, message: String) {
+//        let alert = UIAlertController(
+//            title: title,
+//            message: message,
+//            preferredStyle: UIAlertControllerStyle.Alert
+//        )
+//        let ok = UIAlertAction(
+//            title: "OK",
+//            style: UIAlertActionStyle.Default,
+//            handler: nil
+//        )
+//        alert.addAction(ok)
+//        presentViewController(alert, animated: true, completion: nil)
+//    }
     
 //    override func didReceiveMemoryWarning() {
 //        super.didReceiveMemoryWarning()

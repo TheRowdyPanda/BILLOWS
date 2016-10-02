@@ -39,17 +39,18 @@ class CityListViewModel{
         let city = cities[indexPath.row]
         
         
-        cell.cityNameLabel.text = city.name.value
-        cell.coverImage.image = nil
-        cell.cityImageLink = city.coverImageLink.value
-        
-        if(city.countryName.value == "USA"){
-            cell.countryNameLabel.text = city.stateName.value
-        }
-        else{
-            cell.countryNameLabel.text = city.countryName.value
-        }
-        
+        cell.setupWithCity(city)
+//        cell.cityNameLabel.text = city.name.value
+//        cell.coverImage.image = nil
+//        cell.cityImageLink = city.coverImageLink.value
+//        
+//        if(city.countryName.value == "USA"){
+//            cell.countryNameLabel.text = city.stateName.value
+//        }
+//        else{
+//            cell.countryNameLabel.text = city.countryName.value
+//        }
+//        
         
         //  cell.eventProfileImage.contentMode = .ScaleAspectFit
         //downloadImage(checkedUrl, imageView: cell.eventProfileImage)
@@ -69,35 +70,37 @@ class CityListViewModel{
        // let cityModel = CityFocusViewModel(withCity: city)
         print(city.hasFinishedLoadingWavePreviews.value)
         
+        self.cityToSend = self.cities[indexPath.row]
+        
 //        self.hasLoadedPreviewsForSelectedWave <~ city.hasFinishedLoadingWavePreviews
 //            .producer
 //            .map{$0 as Bool}
         
        
         
-        city.hasFinishedLoadingWavePreviews
-            .producer
-            .startWithNext({
-                [weak self]
-                next in
-                if(next == true){
-                    if(self?.hasLoadedPreviewsForSelectedWave.value == true){
-                        return
-                    }
-                    self?.cityToSend = self?.cities[indexPath.row]
-                    
-                    self?.hasLoadedPreviewsForSelectedWave.value = true
-                    
-                    
-                   // self!.presentCityFocusWithCity(city)
-                }
-                else{
-                    self?.hasLoadedPreviewsForSelectedWave.value = false
-                }
-                print("Model Has Loaded Info:\(self?.hasLoadedPreviewsForSelectedWave.value)")
-                })
-        
-        
+//        city.hasFinishedLoadingWavePreviews
+//            .producer
+//            .startWithNext({
+//                [weak self]
+//                next in
+//                if(next == true){
+//                    if(self?.hasLoadedPreviewsForSelectedWave.value == true){
+//                        return
+//                    }
+//                    self?.cityToSend = self?.cities[indexPath.row]
+//                    
+//                    self?.hasLoadedPreviewsForSelectedWave.value = true
+//                    
+//                    
+//                   // self!.presentCityFocusWithCity(city)
+//                }
+//                else{
+//                    self?.hasLoadedPreviewsForSelectedWave.value = false
+//                }
+//                print("Model Has Loaded Info:\(self?.hasLoadedPreviewsForSelectedWave.value)")
+//                })
+//        
+//        
        // let oldIndex = self.cities.indexOf{$0.name == city.name}
         //self.cities[oldIndex!] = city
         self.cities[indexPath.row] = city
@@ -112,20 +115,27 @@ class CityListViewModel{
         
         for var oldCity in cities{
             self.loadWavePreviewsForCity(oldCity){
-                (result:Bool) in
-//                let oldIndex = self.cities.indexOf{$0.name == oldCity.name}
-//                oldCity.hasFinishedLoadingWavePreviews.value = true
-//                self.cities[oldIndex!] = oldCity
+                (result:[WavePreview]) in
+                oldCity.name = MutableProperty("FUCK")
+                oldCity.name.value = "JI"
+               // oldCity.wavePreviews.append(result.first!)
+                oldCity.wavePreviews.append(result.first!))
+                
+                
+                //oldCity.wavePreviews = result
+                oldCity.updateNumberOfWaves()
                 
             }
+           // oldCity.getWavePreviews()
+            
         }
         
         
     }
     
-    func loadWavePreviewsForCity(city:City, completion:(result:Bool)->Void){
+    func loadWavePreviewsForCity(city:City, completion:(result:[WavePreview])->Void){
         
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             
            
@@ -159,21 +169,35 @@ class CityListViewModel{
             waveP7.imageLink = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
             
             
+            
+            
+          //  city.wavePreviews?.append(waveP1)
+            
+        //    city.loadWavePreview(waveP1)
+            
+            
             let wavePs = [waveP1, waveP2, waveP3, waveP4, waveP5, waveP6, waveP7, ]
             
+            completion(result: wavePs)
             
-            let oldIndex = self.cities.indexOf{$0.name.value == city.name.value}
-            
-            self.cities[oldIndex!].wavePreviews = wavePs
-            
-            self.cities[oldIndex!].hasFinishedLoadingWavePreviews.value = true
+//            
+//            let oldIndex = self.cities.indexOf{$0.name.value == city.name.value}
+//            
+//            self.cities[oldIndex!].loadWavePreview(waveP1)
+//            self.cities[oldIndex!].loadWavePreview(waveP2)
+//            self.cities[oldIndex!].loadWavePreview(waveP3)
+//            self.cities[oldIndex!].loadWavePreview(waveP4)
+//            self.cities[oldIndex!].loadWavePreview(waveP5)
+//            self.cities[oldIndex!].loadWavePreview(waveP6)
+//            self.cities[oldIndex!].loadWavePreview(waveP7)
+//            
+            //self.cities[oldIndex!].hasFinishedLoadingWavePreviews.value = true
           //  print("ME")
             
-            completion(result: true)
             //        return c
         }
-        
-        
+//
+//        
     }
     
     

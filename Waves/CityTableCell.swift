@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveCocoa
 
 class CityTableCell:UITableViewCell{
     
@@ -16,6 +17,14 @@ class CityTableCell:UITableViewCell{
     @IBOutlet weak var countryNameLabel:UILabel!
     
     var cityImageLink:NSURL!
+    
+    var city:City!
+    
+    func setupWithCity(city:City){
+        self.city = city
+        
+        self.bindModel()
+    }
     
     override func awakeFromNib() {
         
@@ -29,6 +38,35 @@ class CityTableCell:UITableViewCell{
         countryNameLabel.layer.shadowRadius = 8
         countryNameLabel.layer.shadowColor = UIColor.blackColor().CGColor
     }
+    
+    
+    func bindModel(){
+        
+         dispatch_async(dispatch_get_global_queue (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            
+            self.city.name.producer.startWithNext({
+                next in
+
+                self.cityNameLabel.text = next
+            })
+            
+            self.city.stateName.producer.startWithNext({
+                next in
+                
+                self.countryNameLabel.text = next
+            })
+            
+            self.city.coverImage.producer.startWithNext({
+                next in
+                
+                self.coverImage.image = next
+            })
+
+        })
+    
+    }
+    
+    
     func viewDidLoad(){
         
         

@@ -15,6 +15,8 @@ class CityFocusViewController:UIViewController{
     
     var imageCache:[NSURL: UIImage] = [NSURL: UIImage]()
     
+    var wavePreviewCount = 0;
+    
     
     @IBOutlet weak var wavePreviewCollectionView:UICollectionView!
     
@@ -72,6 +74,30 @@ class CityFocusViewController:UIViewController{
     
     func bindModel(){
         
+        self.cityFocusViewModel.wavePreviewCount.producer.startWithNext({
+            next in
+            
+            if(next == self.wavePreviewCount){
+                
+            }
+            else{
+                self.wavePreviewCount = next
+                
+               /// dispatch_async(dispatch_get_main_queue(), {
+                    
+                        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+                        dispatch_after(delayTime, dispatch_get_main_queue()) {
+                
+                            dispatch_async(dispatch_get_main_queue(), {
+                                
+                                
+                    self.wavePreviewCollectionView.reloadData()
+                            })
+                            
+                }
+               // })
+            }
+        })
         
        
         hasBoundModel = true;
@@ -105,7 +131,7 @@ extension CityFocusViewController:UICollectionViewDelegate, UICollectionViewData
         case 0:
             return 0
         case 1:
-            return 7
+            return wavePreviewCount
         default:
             return 0
         }
@@ -211,7 +237,10 @@ extension CityFocusViewController:UICollectionViewDelegate, UICollectionViewData
                 let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "CityFocusHeaderView_ID", forIndexPath: indexPath) as! CityFocusHeaderView
                 
 
-                headerView.setUpWith(self.cityFocusViewModel.city)
+                headerView.setUpWith(self.cityFocusViewModel.city, completion: {
+                    (result:Bool) in
+                    headerView.bindModel()
+                })
                 return headerView
             }
             else{

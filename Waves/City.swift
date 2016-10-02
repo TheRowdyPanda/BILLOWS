@@ -16,8 +16,10 @@ struct City{
     var stateName = MutableProperty("")
     var location = MutableProperty((0.0, 0.0))
     var coverImageLink = MutableProperty(NSURL(string: ""))
+    var coverImage = MutableProperty(UIImage())
     
-    var wavePreviews:[WavePreview]?
+    var wavePreviews:[WavePreview] = []
+    var numberWavePreviews = MutableProperty(0)
    // var hasFinishedLoadingWavePreviews:Bool
     var hasFinishedLoadingWavePreviews = MutableProperty(false)
     
@@ -29,48 +31,61 @@ struct City{
         self.stateName.value = stateName ?? ""
         
         self.hasFinishedLoadingWavePreviews.value = false
-//        dispatch_async(dispatch_get_main_queue(), {
-//        self.loadWavePreviews(){
-//            (result:Bool) in
-//            
-//            self.hasFinishedLoadingWavePreviews = true
-//            
-//            
-//            
-//        }
-//            })
+        
+        
+        dispatch_async(dispatch_get_global_queue (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                self.loadCoverImage();
+        })
+    }
+
+//    mutating func loadWavePreview(wavePreview:WavePreview){
+//        
+//        self.wavePreviews.append(wavePreview)
+//        
+//      //  dispatch_async(dispatch_get_main_queue(), {
+//        
+//        
+//       // })
+//    }
+//        
+    
+    mutating func loadWavePreview(){
+        var waveP = WavePreview()
+        waveP.cityName = self.name.value
+        waveP.name = "Poop"
+        
+        self.wavePreviews.append(waveP)
+        
+        self.updateNumberOfWaves()
+        if(self.numberWavePreviews.value < 10){
+            
+        }
+        else{
+            
+        }
+    }
+    mutating func updateNumberOfWaves(){
+        self.numberWavePreviews.value = self.wavePreviews.count ?? 0
     }
     
-//    
-//    mutating func loadWavePreviews(completion:(result:Bool)->Void){
-//        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.01 * Double(NSEC_PER_SEC)))
-//        dispatch_after(delayTime, dispatch_get_main_queue()) {
-//            
-//            self.hasFinishedLoadingWavePreviews = true
-//                completion(result: true)
-//            
-//            
-//        }
-//      // self.hasFinishedLoadingWavePreviews = true
-//        //completion(result: true)
-//    }
-    
+    func loadCoverImage(){
+        
+                let url = self.coverImageLink.value
+                 var imgURL:NSURL = url!
+                    // Download an NSData representation of the image at the URL
+                    let request: NSURLRequest = NSURLRequest(URL: imgURL)
+                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+                        if error == nil {
+                            let image = UIImage(data: data!)
+                           self.coverImage.value = image!
+                        }
+                        else {
+                            print("Error: \(error!.localizedDescription)")
+                          //  Crashlytics.sharedInstance().recordError(error!)
+                        }
+                    })
+        
 
-//    func loadWavePreviews()->Bool{
-//        
-//                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
-//                dispatch_after(delayTime, dispatch_get_main_queue()) {
-//                    
-//                    var c:City = self
-//                    let wavePs = [WavePreview(), WavePreview(), WavePreview()]
-//                    c.wavePreviews = wavePs
-//        
-//                    c.hasFinishedLoadingWavePreviews = true
-//                    print(self.hasFinishedLoadingWavePreviews)
-//                    return c
-//                }
-//        return true
-//        
-//    }
+    }
 
 }

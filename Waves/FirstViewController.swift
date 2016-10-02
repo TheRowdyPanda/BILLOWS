@@ -101,9 +101,13 @@ class FirstViewController: UIViewController {
     func goToScraperView(){
         
         
+        let gmv = GmailImportViewModel()
+        
+        
                 /*weak var*/let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let gvc = mainStoryboard.instantiateViewControllerWithIdentifier("GmailImportViewController_ID") as! GmailImportViewController
         
+        gvc.gmailImportModel = gmv;
         
                 self.navigationController?.pushViewController(gvc, animated: false)
         

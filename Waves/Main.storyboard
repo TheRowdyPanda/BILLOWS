@@ -308,7 +308,7 @@
         <!--City Focus View Controller-->
         <scene sceneID="FSW-xh-tQY">
             <objects>
-                <viewController restorationIdentifier="CityFocusViewController_ID" storyboardIdentifier="CityFocusViewController_ID" id="5NC-P7-wF3" customClass="CityFocusViewController" customModule="Waves" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="CityFocusViewController_ID" storyboardIdentifier="CityFocusViewController_ID" automaticallyAdjustsScrollViewInsets="NO" id="5NC-P7-wF3" customClass="CityFocusViewController" customModule="Waves" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EsP-Xv-El2"/>
                         <viewControllerLayoutGuide type="bottom" id="m8f-bY-l1j"/>
