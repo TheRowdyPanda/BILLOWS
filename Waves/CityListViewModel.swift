@@ -114,18 +114,16 @@ class CityListViewModel{
     func loadWavePreviewsForCities(){
         
         for var oldCity in cities{
-            self.loadWavePreviewsForCity(oldCity){
-                (result:[WavePreview]) in
-                oldCity.name = MutableProperty("FUCK")
-                oldCity.name.value = "JI"
-               // oldCity.wavePreviews.append(result.first!)
-                oldCity.wavePreviews.append(result.first!))
-                
-                
-                //oldCity.wavePreviews = result
-                oldCity.updateNumberOfWaves()
-                
-            }
+//            self.loadWavePreviewsForCity(oldCity){
+//                (result:[WavePreview]) in
+//               // oldCity.wavePreviews.append(result.first!)
+//               // oldCity.wavePreviews.append(result.first!))
+//                
+//                
+//                //oldCity.wavePreviews = result
+//                oldCity.updateNumberOfWaves()
+//                
+//            }
            // oldCity.getWavePreviews()
             
         }
@@ -135,38 +133,39 @@ class CityListViewModel{
     
     func loadWavePreviewsForCity(city:City, completion:(result:[WavePreview])->Void){
         
+        
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             
            
-            var waveP1 = WavePreview()
-            waveP1.name = "Coool party"
-            waveP1.imageLink = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/e/eb/The_Adicts_2011_SO36_03.jpg")
+            let waveP1 = WavePreview()
+            waveP1.name.value = "Coool party"
+            waveP1.imageLink.value = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/e/eb/The_Adicts_2011_SO36_03.jpg")
             
-            var waveP2 = WavePreview()
-            waveP2.name = "Fun times, good times"
-            waveP2.imageLink = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/c/cb/BackyardParty.jpg")
+            let waveP2 = WavePreview()
+            waveP2.name.value = "Fun times, good times"
+            waveP2.imageLink.value = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/c/cb/BackyardParty.jpg")
             
-            var waveP3 = WavePreview()
-            waveP3.name = "New york fun times"
-            waveP3.imageLink = NSURL(string: "http://previews.123rf.com/images/somatuscani/somatuscani1506/somatuscani150600004/41952081-NEW-YORK-CITY-JUNE-11-People-having-fun-with-the-Screen-Shows-in-Times-Square-one-of-the-most-visite-Stock-Photo.jpg")
+            let waveP3 = WavePreview()
+            waveP3.name.value = "New york fun times"
+            waveP3.imageLink.value = NSURL(string: "http://previews.123rf.com/images/somatuscani/somatuscani1506/somatuscani150600004/41952081-NEW-YORK-CITY-JUNE-11-People-having-fun-with-the-Screen-Shows-in-Times-Square-one-of-the-most-visite-Stock-Photo.jpg")
             
-            var waveP4 = WavePreview()
-            waveP4.name = "Bachelor Party!"
-            waveP4.imageLink = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
+            let waveP4 = WavePreview()
+            waveP4.name.value = "Bachelor Party!"
+            waveP4.imageLink.value = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
             
-            var waveP5 = WavePreview()
-            waveP5.name = "Coool party"
-            waveP5.imageLink = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
+            let waveP5 = WavePreview()
+            waveP5.name.value = "Coool party"
+            waveP5.imageLink.value = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
             
-            var waveP6 = WavePreview()
-            waveP6.name = "Coool party"
-            waveP6.imageLink = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
+            let waveP6 = WavePreview()
+            waveP6.name.value = "Coool party"
+            waveP6.imageLink.value = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
             
             
-            var waveP7 = WavePreview()
-            waveP7.name = "Coool party"
-            waveP7.imageLink = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
+            let waveP7 = WavePreview()
+            waveP7.name.value = "Coool party"
+            waveP7.imageLink.value = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
             
             
             
@@ -201,10 +200,10 @@ class CityListViewModel{
     }
     
     
-    func presentCityFocusWithCity(city:City){
-        let cityFocusViewModel = CityFocusViewModel(withCity: city)
-        
-    }
+//    func presentCityFocusWithCity(city:City){
+//        let cityFocusViewModel = CityFocusViewModel(withCity: city)
+//        
+//    }
     
     
     

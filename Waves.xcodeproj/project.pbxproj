@@ -16,6 +16,8 @@
 		8E670A811D9CCF94000C85B7 /* WavesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E670A801D9CCF94000C85B7 /* WavesTests.swift */; };
 		8E670A8C1D9CCF94000C85B7 /* WavesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E670A8B1D9CCF94000C85B7 /* WavesUITests.swift */; };
 		8E670A9E1D9CCFE1000C85B7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E670A9D1D9CCFE1000C85B7 /* HomeViewController.swift */; };
+		8EF8029D1DA1B12300ED1343 /* WavePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF8029C1DA1B12300ED1343 /* WavePreviewCell.swift */; };
+		8EF8029F1DA1B13700ED1343 /* WavePreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EF8029E1DA1B13700ED1343 /* WavePreviewCell.xib */; };
 		8EFBE0071D9CDACC006FD731 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0061D9CDACC006FD731 /* FirstViewController.swift */; };
 		8EFBE00A1D9CDAEB006FD731 /* CityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0081D9CDAEB006FD731 /* CityListViewController.swift */; };
 		8EFBE00B1D9CDAEB006FD731 /* CityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0091D9CDAEB006FD731 /* CityListViewModel.swift */; };
@@ -23,8 +25,8 @@
 		8EFBE00F1D9CDAFF006FD731 /* CityFocusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE00D1D9CDAFF006FD731 /* CityFocusViewModel.swift */; };
 		8EFBE0111D9CDB16006FD731 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0101D9CDB16006FD731 /* City.swift */; };
 		8EFBE0131D9CDB42006FD731 /* YSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0121D9CDB42006FD731 /* YSegmentedControl.swift */; };
-		8EFBE0171D9CDB6B006FD731 /* WavePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0151D9CDB6B006FD731 /* WavePreviewCell.swift */; };
-		8EFBE0181D9CDB6B006FD731 /* WavePreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EFBE0161D9CDB6B006FD731 /* WavePreviewCell.xib */; };
+		8EFBE0171D9CDB6B006FD731 /* WavePreviewCell_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0151D9CDB6B006FD731 /* WavePreviewCell_old.swift */; };
+		8EFBE0181D9CDB6B006FD731 /* WavePreviewCell_old.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EFBE0161D9CDB6B006FD731 /* WavePreviewCell_old.xib */; };
 		8EFBE01B1D9CDB75006FD731 /* WavePreviewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0191D9CDB75006FD731 /* WavePreviewHeaderView.swift */; };
 		8EFBE01C1D9CDB75006FD731 /* WavePreviewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EFBE01A1D9CDB75006FD731 /* WavePreviewHeaderView.xib */; };
 		8EFBE01E1D9CDB9D006FD731 /* WavePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE01D1D9CDB9D006FD731 /* WavePreview.swift */; };
@@ -98,6 +100,8 @@
 		8E670A8B1D9CCF94000C85B7 /* WavesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesUITests.swift; sourceTree = "<group>"; };
 		8E670A8D1D9CCF94000C85B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E670A9D1D9CCFE1000C85B7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8EF8029C1DA1B12300ED1343 /* WavePreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavePreviewCell.swift; sourceTree = "<group>"; };
+		8EF8029E1DA1B13700ED1343 /* WavePreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WavePreviewCell.xib; sourceTree = "<group>"; };
 		8EFBE0061D9CDACC006FD731 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		8EFBE0081D9CDAEB006FD731 /* CityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityListViewController.swift; sourceTree = "<group>"; };
 		8EFBE0091D9CDAEB006FD731 /* CityListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityListViewModel.swift; sourceTree = "<group>"; };
@@ -105,8 +109,8 @@
 		8EFBE00D1D9CDAFF006FD731 /* CityFocusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityFocusViewModel.swift; sourceTree = "<group>"; };
 		8EFBE0101D9CDB16006FD731 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		8EFBE0121D9CDB42006FD731 /* YSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSegmentedControl.swift; sourceTree = "<group>"; };
-		8EFBE0151D9CDB6B006FD731 /* WavePreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavePreviewCell.swift; sourceTree = "<group>"; };
-		8EFBE0161D9CDB6B006FD731 /* WavePreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WavePreviewCell.xib; sourceTree = "<group>"; };
+		8EFBE0151D9CDB6B006FD731 /* WavePreviewCell_old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavePreviewCell_old.swift; sourceTree = "<group>"; };
+		8EFBE0161D9CDB6B006FD731 /* WavePreviewCell_old.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WavePreviewCell_old.xib; sourceTree = "<group>"; };
 		8EFBE0191D9CDB75006FD731 /* WavePreviewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavePreviewHeaderView.swift; sourceTree = "<group>"; };
 		8EFBE01A1D9CDB75006FD731 /* WavePreviewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WavePreviewHeaderView.xib; sourceTree = "<group>"; };
 		8EFBE01D1D9CDB9D006FD731 /* WavePreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavePreview.swift; sourceTree = "<group>"; };
@@ -300,17 +304,19 @@
 		8EFBE0141D9CDB55006FD731 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8EFBE0151D9CDB6B006FD731 /* WavePreviewCell_old.swift */,
+				8EFBE0161D9CDB6B006FD731 /* WavePreviewCell_old.xib */,
 				8EFBE0311D9CDC09006FD731 /* ProfileHeaderView.swift */,
 				8EFBE0321D9CDC09006FD731 /* ProfileHeaderView.xib */,
 				8EFBE0191D9CDB75006FD731 /* WavePreviewHeaderView.swift */,
 				8EFBE01A1D9CDB75006FD731 /* WavePreviewHeaderView.xib */,
-				8EFBE0151D9CDB6B006FD731 /* WavePreviewCell.swift */,
-				8EFBE0161D9CDB6B006FD731 /* WavePreviewCell.xib */,
 				8EFBE0231D9CDBB9006FD731 /* UserPreviewCell.swift */,
 				8EFBE03B1D9CDC40006FD731 /* CityTableCell.swift */,
 				8EFBE04B1D9DF7B0006FD731 /* CityFocusHeaderView.swift */,
 				8EFBE04D1D9DF7C3006FD731 /* CityFocusHeaderView.xib */,
 				8EFBE0511D9F00D9006FD731 /* UserPreviewFaceView.swift */,
+				8EF8029C1DA1B12300ED1343 /* WavePreviewCell.swift */,
+				8EF8029E1DA1B13700ED1343 /* WavePreviewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -396,18 +402,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Rijul Gupta";
 				TargetAttributes = {
 					8E670A641D9CCF93000C85B7 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					8E670A7B1D9CCF94000C85B7 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 8E670A641D9CCF93000C85B7;
 					};
 					8E670A861D9CCF94000C85B7 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 8E670A641D9CCF93000C85B7;
 					};
 				};
@@ -438,9 +447,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E670A761D9CCF93000C85B7 /* LaunchScreen.storyboard in Resources */,
+				8EF8029F1DA1B13700ED1343 /* WavePreviewCell.xib in Resources */,
 				8EFBE04E1D9DF7C3006FD731 /* CityFocusHeaderView.xib in Resources */,
 				8EFBE0341D9CDC09006FD731 /* ProfileHeaderView.xib in Resources */,
-				8EFBE0181D9CDB6B006FD731 /* WavePreviewCell.xib in Resources */,
+				8EFBE0181D9CDB6B006FD731 /* WavePreviewCell_old.xib in Resources */,
 				8EFBE0401D9CDCFB006FD731 /* Main.storyboard in Resources */,
 				8EFBE01C1D9CDB75006FD731 /* WavePreviewHeaderView.xib in Resources */,
 				8E670A731D9CCF93000C85B7 /* Assets.xcassets in Resources */,
@@ -593,7 +603,7 @@
 			files = (
 				8EFBE0441D9DBA51006FD731 /* SignInViewModel.swift in Sources */,
 				8E670A6B1D9CCF93000C85B7 /* ViewController.swift in Sources */,
-				8EFBE0171D9CDB6B006FD731 /* WavePreviewCell.swift in Sources */,
+				8EFBE0171D9CDB6B006FD731 /* WavePreviewCell_old.swift in Sources */,
 				8EFBE0131D9CDB42006FD731 /* YSegmentedControl.swift in Sources */,
 				8EFBE00F1D9CDAFF006FD731 /* CityFocusViewModel.swift in Sources */,
 				8EFBE0241D9CDBB9006FD731 /* UserPreviewCell.swift in Sources */,
@@ -616,6 +626,7 @@
 				8EFBE02C1D9CDBD0006FD731 /* SignUpViewModel.swift in Sources */,
 				8EFBE04A1D9DDEF1006FD731 /* WaveDashboardViewModel.swift in Sources */,
 				8EFBE0301D9CDBD7006FD731 /* ProfileViewModel.swift in Sources */,
+				8EF8029D1DA1B12300ED1343 /* WavePreviewCell.swift in Sources */,
 				8EFBE0111D9CDB16006FD731 /* City.swift in Sources */,
 				8EFBE0501D9E5735006FD731 /* WaveDashboardViewController.swift in Sources */,
 				8EFBE02B1D9CDBD0006FD731 /* SignUpViewController.swift in Sources */,
@@ -689,8 +700,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -712,7 +725,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -734,8 +747,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -751,9 +766,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -762,11 +778,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E7AA7DBF269F338B1D3CF1C /* Pods-Waves.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Waves/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rijulgupta.Waves;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -774,11 +792,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ACF2AABC076B3F8993B36028 /* Pods-Waves.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Waves/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rijulgupta.Waves;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -791,6 +811,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rijulgupta.WavesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Waves.app/Waves";
 			};
 			name = Debug;
@@ -804,6 +825,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rijulgupta.WavesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Waves.app/Waves";
 			};
 			name = Release;
@@ -816,6 +838,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rijulgupta.WavesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = Waves;
 			};
 			name = Debug;
@@ -828,6 +851,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rijulgupta.WavesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = Waves;
 			};
 			name = Release;

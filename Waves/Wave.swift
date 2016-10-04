@@ -14,8 +14,6 @@ struct Wave{
     var waveId = MutableProperty("")
     var destinationCityString = MutableProperty("")
     
-    
-    
     var userPreviews:[UserPreview]?
     //var comments
     //var likers
@@ -24,7 +22,7 @@ struct Wave{
     //We want to get the full wave information from a wave preview. That will mean we'll need to load more json from the info in your wavepreview object.
     init(preview:WavePreview, completion:(result:Wave, error:NSError)->Void){
         
-        self.waveId.value = preview.waveId
+        self.waveId.value = preview.waveId.value
         self.destinationCityString.value = ""
         self.userPreviews = [UserPreview]()
         //load info from object with completion handler

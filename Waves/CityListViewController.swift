@@ -73,7 +73,7 @@ class CityListViewController: UIViewController {
         //set the frame
         btn1.frame = CGRectMake(0, 0, barHeight, barHeight)
         //add the selector function
-        btn1.addTarget(self, action: Selector("goToMyProfile"), forControlEvents: .TouchUpInside)
+        btn1.addTarget(self, action: #selector(CityListViewController.goToMyProfile), forControlEvents: .TouchUpInside)
         //set the left bar button item of the view's navigation item to our custom button! Looks nice.
         self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(customView:btn1), animated: true);
         
@@ -86,7 +86,7 @@ class CityListViewController: UIViewController {
         //set the frame
         btn2.frame = CGRectMake(0, 0, barHeight, barHeight)
         //add the selector function
-        btn2.addTarget(self, action: Selector("setupSearchView"), forControlEvents: .TouchUpInside)
+        btn2.addTarget(self, action: #selector(CityListViewController.setupSearchView), forControlEvents: .TouchUpInside)
         //set the left bar button item of the view's navigation item to our custom button! Looks nice.
       //  self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(customView:btn1), animated: true);
         self.navigationItem.setRightBarButtonItem(UIBarButtonItem(customView:btn2), animated: true)
@@ -164,17 +164,40 @@ class CityListViewController: UIViewController {
         
         //how to add custom images to our custom segmented controller
         
-        let viewWidth:CGFloat = 28.0;
+        let viewWidth:CGFloat = 20.0;
         let middlex:CGFloat = (((self.view.frame.width/3.0) - viewWidth)/2.0)
-        let v = UIView(frame: CGRect(x: middlex, y: -5.0, width: viewWidth, height: viewWidth))
-        v.backgroundColor = UIColor.yellowColor()
-        segmented.items.first?.label.addSubview(v)
         
-        let lFrame = segmented.items.first?.label.frame;
-        segmented.items.first?.label.frame = CGRectMake((lFrame?.origin.x)!, (lFrame?.origin.y)! + 10.0, (lFrame?.width)!, (lFrame?.height)!);
+        let segmentedButton1 = UIView(frame: CGRect(x: middlex, y: -5.0, width: viewWidth, height: viewWidth))
+        segmentedButton1.backgroundColor = UIColor.lightGrayColor()
+        segmented.items[0].label.addSubview(segmentedButton1)
+        
+        let lFrame1 = segmented.items[0].label.frame;
+        
+        segmented.items[0].label.frame = CGRectMake((lFrame1.origin.x), (lFrame1.origin.y) + 10.0, (lFrame1.width), (lFrame1.height));
         
         
-        self.view.addSubview(segmented)
+        
+        let segmentedButton2 = UIView(frame: CGRect(x: middlex, y: -5.0, width: viewWidth, height: viewWidth))
+        segmentedButton2.backgroundColor = UIColor.lightGrayColor()
+        segmented.items[1].label.addSubview(segmentedButton2)
+        
+        let lFrame2 = segmented.items[1].label.frame;
+        
+        segmented.items[1].label.frame = CGRectMake((lFrame2.origin.x), (lFrame2.origin.y) + 10.0, (lFrame2.width), (lFrame2.height));
+        
+        
+        
+        let segmentedButton3 = UIView(frame: CGRect(x: middlex, y: -5.0, width: viewWidth, height: viewWidth))
+        segmentedButton3.backgroundColor = UIColor.lightGrayColor()
+        segmented.items[2].label.addSubview(segmentedButton3)
+        
+        let lFrame3 = segmented.items[2].label.frame;
+        
+        segmented.items[2].label.frame = CGRectMake((lFrame3.origin.x), (lFrame3.origin.y) + 10.0, (lFrame3.width), (lFrame3.height));
+        
+        
+        
+       // self.view.addSubview(segmented)
         self.customSCHolderHeight.constant = segmentedHeight
         self.customSCHolder.addSubview(segmented);
 
@@ -236,60 +259,58 @@ class CityListViewController: UIViewController {
         let city = self.cityListViewModel.cityToSend!
                 let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
                 dispatch_after(delayTime, dispatch_get_main_queue()) {
-        
-       // self.cityListViewModel.cityToSend!.name.value = "FUCK ME!"
+
         }
        // let city = self.cityListViewModel.cityForIndexPath(cityIndex!)
 
-        let cityFocusViewModel = CityFocusViewModel(withCity: city)
+        weak var cityFocusViewModel = CityFocusViewModel(withCity: city)
         
         
         
         /*weak var*/let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        /*weak var*/let cityFocusViewController = mainStoryboard.instantiateViewControllerWithIdentifier("CityFocusViewController_ID") as! CityFocusViewController
+        weak var cityFocusViewController = mainStoryboard.instantiateViewControllerWithIdentifier("CityFocusViewController_ID") as! CityFocusViewController
         
-        cityFocusViewController.setUpWith(cityFocusViewModel){
-            // [weak self]
+        cityFocusViewController!.setUpWith(cityFocusViewModel!){
+             [weak self]
             (result:Bool) in
+            self!.navigationController?.pushViewController(cityFocusViewController!, animated: true)
             
-            
-            (self.navigationController?.pushViewController(cityFocusViewController, animated: false))!
         }
-        
+
     }
     
     func goToMyProfile(){
         
         
-        var waveP1 = WavePreview()
-        waveP1.name = "Coool party"
-        waveP1.cityName = "Las Vegas, NV"
-        waveP1.imageLink = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/e/eb/The_Adicts_2011_SO36_03.jpg")
+        let waveP1 = WavePreview()
+        waveP1.name.value = "Coool party"
+        waveP1.cityName.value = "Las Vegas, NV"
+        waveP1.imageLink.value = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/e/eb/The_Adicts_2011_SO36_03.jpg")
         
-        var waveP2 = WavePreview()
-        waveP2.name = "Fun times, good times"
-        waveP2.imageLink = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/c/cb/BackyardParty.jpg")
+        let waveP2 = WavePreview()
+        waveP2.name.value = "Fun times, good times"
+        waveP2.imageLink.value = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/c/cb/BackyardParty.jpg")
         
-        var waveP3 = WavePreview()
-        waveP3.name = "New york fun times"
-        waveP3.imageLink = NSURL(string: "http://previews.123rf.com/images/somatuscani/somatuscani1506/somatuscani150600004/41952081-NEW-YORK-CITY-JUNE-11-People-having-fun-with-the-Screen-Shows-in-Times-Square-one-of-the-most-visite-Stock-Photo.jpg")
+        let waveP3 = WavePreview()
+        waveP3.name.value = "New york fun times"
+        waveP3.imageLink.value = NSURL(string: "http://previews.123rf.com/images/somatuscani/somatuscani1506/somatuscani150600004/41952081-NEW-YORK-CITY-JUNE-11-People-having-fun-with-the-Screen-Shows-in-Times-Square-one-of-the-most-visite-Stock-Photo.jpg")
         
-        var waveP4 = WavePreview()
-        waveP4.name = "Bachelor Party!"
-        waveP4.imageLink = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
+        let waveP4 = WavePreview()
+        waveP4.name.value = "Bachelor Party!"
+        waveP4.imageLink.value = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
         
-        var waveP5 = WavePreview()
-        waveP5.name = "Coool party"
-        waveP5.imageLink = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
+        let waveP5 = WavePreview()
+        waveP5.name.value = "Coool party"
+        waveP5.imageLink.value = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
         
-        var waveP6 = WavePreview()
-        waveP6.name = "Coool party"
-        waveP6.imageLink = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
+        let waveP6 = WavePreview()
+        waveP6.name.value = "Coool party"
+        waveP6.imageLink.value = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
         
         
-        var waveP7 = WavePreview()
-        waveP7.name = "Coool party"
-        waveP7.imageLink = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
+        let waveP7 = WavePreview()
+        waveP7.name.value = "Coool party"
+        waveP7.imageLink.value = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
         
         
         let wavePs = [waveP1, waveP2, waveP3, waveP4, waveP5, waveP6, waveP7, ]
@@ -320,7 +341,7 @@ class CityListViewController: UIViewController {
         
         profileViewController.setUpWith(profileViewModel, completion: {
             (result:Bool) in
-            (self.navigationController?.pushViewController(profileViewController, animated: false))!
+            (self.navigationController?.pushViewController(profileViewController, animated: true))!
             
         })
         

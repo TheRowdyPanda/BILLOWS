@@ -130,13 +130,21 @@ class SignInViewController:UIViewController{
     }
     
     
+    @IBAction func goToScraper(){
+        dispatch_async(dispatch_get_main_queue()) {
+            //we tell our first view that the user has signed in
+            self.firstViewDelegate!.shouldGoToScraper = true
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            print("test")
-        }
+//        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+//        dispatch_after(delayTime, dispatch_get_main_queue()) {
+//            print("test")
+//        }
         
         
         //            usleep(200)

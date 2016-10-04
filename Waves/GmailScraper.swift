@@ -9,11 +9,14 @@
 import Foundation
 import GoogleAPIClientForREST
 import GTMOAuth2
+import ReactiveCocoa
 
 class GmailScraper:UIViewController{
     private let kKeychainItemName = "Gmail API"
     private let kClientID = "134050187459-p3ekcrrjr5d8u0222q1mml423f7s0r74.apps.googleusercontent.com"
     
+    var updateString = MutableProperty("")
+    var currentDateString = MutableProperty("")
     // If modifying these scopes, delete your previously saved credentials by
     // resetting the iOS simulator or uninstall the app.
     private let scopes = [kGTLRAuthScopeGmailReadonly]
@@ -147,16 +150,74 @@ class GmailScraper:UIViewController{
 //        )
 //    }
     
-    func dispalyEmailSpecsWithTicket(ticket:GTLRServiceTicket, finishedWithObject labelsResponse:GTLRGmail_MessagePart, error: NSError?){
+    func displayEmailSpecsWithTicket(ticket:GTLRServiceTicket, finishedWithObject labelsResponse:GTLRGmail_MessagePart, error: NSError?){
        
         if let error = error {
             //showAlert("Error", message: error.localizedDescription)
             return
         }
+        
+        
         print(labelsResponse.body);
         
         
     }
+    
+  //  func decodeBodyFromPart(body:GTLRGmail_MessagePartBody){
+    func decodeBodyFromString(body:String){
+        let bodyData = body
+        
+        
+        //  print(bodyData)
+        var base64DataString:String! = ""
+        base64DataString = body
+//        
+//        if let str = bodyData.data{
+//            base64DataString =  str
+//        }
+        
+        base64DataString = base64DataString.stringByReplacingOccurrencesOfString("_", withString: "/", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        base64DataString = base64DataString.stringByReplacingOccurrencesOfString("-", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        let decodedData = NSData(base64EncodedString: base64DataString, options:NSDataBase64DecodingOptions(rawValue: 0))
+        let decodedString = NSString(data: decodedData!, encoding: NSUTF8StringEncoding)
+        
+        print("BODY:")
+        print(decodedString)
+        
+        var newString = updateString.value;
+        newString += "\n\n";
+        
+        if let daString = decodedString as? String{
+            newString += daString
+        }
+        else{
+            
+            
+            
+        }
+        
+        
+        updateString.value = newString
+        
+        
+    }
+    
+    func parseString1(string:String){
+        
+        let wordChecker = ["United"]
+        
+        var checkerCount = 0;
+        for w in wordChecker{
+            if((string.lowercaseString.rangeOfString(w.lowercaseString)) != nil && checkerCount == 0){
+                checkerCount = 1;
+                //                print(snippet)
+                //                let k1 = labelsResponse;
+            }
+        }
+        
+    }
+    
     
     
     func displayResultWithTicket2(ticket : GTLRServiceTicket,
@@ -170,43 +231,101 @@ class GmailScraper:UIViewController{
             return
         }
         
-        print("Message")
+       // print("Message")
         let snippet = labelsResponse.snippet
-        
-        let bodyData = labelsResponse.payload?.parts?.first?.body
-        
-            
-        print(bodyData)
-        var base64DataString:String! = ""
-            
-        if let str = bodyData?.data{
-            base64DataString =  str
-        }
-        
-        base64DataString = base64DataString.stringByReplacingOccurrencesOfString("_", withString: "/", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        base64DataString = base64DataString.stringByReplacingOccurrencesOfString("-", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        let decodedData = NSData(base64EncodedString: base64DataString, options:NSDataBase64DecodingOptions(rawValue: 0))
-        let decodedString = NSString(data: decodedData!, encoding: NSUTF8StringEncoding)
-        print(decodedString)
+        print("SNIPPED")
+        print(snippet)
         
         
+//        let bodyData = labelsResponse.payload?.parts?.first?.body
+//        
+//            
+//      //  print(bodyData)
+//        var base64DataString:String! = ""
+//            
+//        if let str = bodyData?.data{
+//            base64DataString =  str
+//        }
+//        
+//        base64DataString = base64DataString.stringByReplacingOccurrencesOfString("_", withString: "/", options: NSStringCompareOptions.LiteralSearch, range: nil)
+//        base64DataString = base64DataString.stringByReplacingOccurrencesOfString("-", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+//        
+//        let decodedData = NSData(base64EncodedString: base64DataString, options:NSDataBase64DecodingOptions(rawValue: 0))
+//        let decodedString = NSString(data: decodedData!, encoding: NSUTF8StringEncoding)
+//       // print(decodedString)
+//        
+//        
         
         let since = (labelsResponse.internalDate?.doubleValue)!/1000.0;
-        print("DATE")
+        let date = NSDate(timeIntervalSince1970: since)
+        
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        var dateString = dateFormatter.stringFromDate(date)
+        
+        self.currentDateString.value = dateString
+
+       // print("DATE")
         
 
         
-        print(NSDate(timeIntervalSince1970: since))
+       // print(NSDate(timeIntervalSince1970: since))
        
         
-        let wordChecker = ["Delta", "Airlines", "Flight", "eTicket"]
+        let wordChecker = ["Delta", "Airlines", "Flight", "eTicket", "United"]
         
+        var checkerCount = 0;
         for w in wordChecker{
-            if((snippet?.lowercaseString.rangeOfString(w.lowercaseString)) != nil){
-                print(snippet)
-                let k1 = labelsResponse;
-                let k2 = k1.payload
+            if((snippet?.lowercaseString.rangeOfString(w.lowercaseString)) != nil && checkerCount == 0){
+//                print(snippet)
+//                let k1 = labelsResponse;
+//                let k2 = k1.payload
+//                print("PAYLOAD:")
+//                print(k2?.body)
+                
+                checkerCount += 1;
+                
+                if let payload = labelsResponse.payload{
+                    if let parts = payload.parts{
+                        if let first = parts.first{
+                            if let body = first.body{
+                                if let daString = body.data{
+                                    self.decodeBodyFromString(daString)
+                                }
+                                
+                            }
+                            else{
+                                
+                                
+                            }
+                        }
+                        else{
+                            
+                            
+                        }
+                    }
+                    else{
+                        
+                        
+                        if let json = labelsResponse.JSON{
+                            if let payload2 = json.valueForKey("payload"){
+                                if let body2 = payload2.valueForKey("body"){
+                                    if let data2 = body2.valueForKey("data"){
+                                        self.decodeBodyFromString(data2 as! String)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else{
+                    
+                    
+                    
+                }
+                
+                
+                
                 
             }
         }
@@ -225,6 +344,8 @@ class GmailScraper:UIViewController{
         
       //  print(labelsResponse)
         
+        
+        //this lets us get the next set of messages
         let np = labelsResponse.nextPageToken;
         let query = GTLRGmailQuery_UsersMessagesList.queryWithUserId("me")
         
@@ -238,12 +359,17 @@ class GmailScraper:UIViewController{
         })
         
         
+        
         let m = labelsResponse.messages
       //  print(m)
         for m2 in m!{
-         //   print(m2)
+//            print(m2)
 //            let snippet = m2.snippet
+//            print("SNIPPET:")
 //            print(snippet)
+            
+            
+//            
             let m3 = m2.identifier
             
             let query = GTLRGmailQuery_UsersMessagesGet.queryWithUserId("me", identifier: m3!)

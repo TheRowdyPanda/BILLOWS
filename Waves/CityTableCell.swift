@@ -18,7 +18,7 @@ class CityTableCell:UITableViewCell{
     
     var cityImageLink:NSURL!
     
-    var city:City!
+    weak var city:City!
     
     func setupWithCity(city:City){
         self.city = city
@@ -42,28 +42,57 @@ class CityTableCell:UITableViewCell{
     
     func bindModel(){
         
-         dispatch_async(dispatch_get_global_queue (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        dispatch_async(dispatch_get_global_queue (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             
             self.city.name.producer.startWithNext({
+                [weak self]
                 next in
-
-                self.cityNameLabel.text = next
+                self!.cityNameLabel.text = next
             })
             
             self.city.stateName.producer.startWithNext({
+                [weak self]
                 next in
                 
-                self.countryNameLabel.text = next
+                self!.countryNameLabel.text = next
             })
             
-            self.city.coverImage.producer.startWithNext({
+            self.city.stateName.producer.combineLatestWith(self.city.countryName.producer).startWithNext({
+                [weak self]
                 next in
+                if(next.1 == "USA"){
+                    self!.countryNameLabel.text = next.0
+                }
+                else{
+                    self!.countryNameLabel.text = next.1
+                }
                 
-                self.coverImage.image = next
             })
-
+            
+            self.city.coverImageData.producer.startWithNext({
+                [weak self]
+                next in
+                if let image = UIImage(data:next!){
+                    dispatch_async(dispatch_get_main_queue(), {
+                        [weak self] in
+                        
+                        
+                        self!.coverImage.image = image
+                        })
+                }
+                })
+            //            self.city.coverImage.producer.startWithNext({
+            //                next in
+            //
+            //                dispatch_async(dispatch_get_main_queue(), {
+            //
+            //
+            //                    self.coverImage.image = next
+            //                })
+            //            })
+            
         })
-    
+        
     }
     
     

@@ -13,8 +13,8 @@ import ReactiveCocoa
 class SignUpViewModel{
 
     
-    var fakeEmail = "Erlich.Bachman@piedpiper.com"
-    var fakePassword = "ThisGuyFucks88"
+    var fakeEmail = "admin"
+    var fakePassword = "password"
     
 
     var userEmailString = MutableProperty("")
@@ -56,10 +56,12 @@ class SignUpViewModel{
     
     
     func submitInformationToServers(){
-        fakeEmail = "1"
-        fakePassword = "2"
+        fakeEmail = "admin"
+        fakePassword = "password"
         if(userEmailString.value == fakeEmail && userPasswordString.value == fakePassword){
             self.hasSentData.value = true
+            
+            
         }
         else{
             self.hasSentData.value = false

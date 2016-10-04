@@ -105,44 +105,73 @@ class ProfileHeaderView:UICollectionReusableView{
                 
                 self?.userFirstNameLabel.text = next;
                 })
-            
-            self.user.coverImageLink.producer.startWithNext({
+//            
+//            self.user.coverImageLink.producer.startWithNext({
+//                [weak self]
+//                next in
+//                
+//                if let check = self{
+//                    
+//                }
+//                else{
+//                    return
+//                }
+//                if let data = NSData(contentsOfURL: (next)!){
+//                    
+//                    if let image = UIImage(data:data){
+//                        dispatch_async(dispatch_get_main_queue(), {
+//                            self!.coverImageView.image = image
+//                            self!.coverImageView.alpha = 1.0;
+//                        })
+//                    }
+//                }
+//                
+//                })
+//            
+//            
+            self.user.coverImageData.producer.startWithNext({
                 [weak self]
                 next in
                 
-                if let check = self{
+                if let image = UIImage(data: next!){
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self!.coverImageView.image = image
+                        self!.coverImageView.alpha = 1.0;
+                    })
                     
                 }
-                else{
-                    return
-                }
-                if let data = NSData(contentsOfURL: (next)!){
-                    
-                    if let image = UIImage(data:data){
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self!.coverImageView.image = image
-                            self!.coverImageView.alpha = 1.0;
-                        })
-                    }
-                }
-                
-                })
+            })
             
-            
-            self.user.profileImageLink.producer.startWithNext({
+            self.user.profileImageData.producer.startWithNext({
                 [weak self]
                 next in
-                if let data = NSData(contentsOfURL: (next)!){
-                    
-                    if let image = UIImage(data:data){
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self!.userImageView.image = image
-                        })
-                    }
-                }
                 
+                if let image = UIImage(data: next!){
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self!.userImageView.image = image
+                        self!.userImageView.alpha = 1.0;
+                    })
+                    
+                }
                 })
             
+//            
+//            self.user.profileImageLink.producer.startWithNext({
+//                [weak self]
+//                next in
+//                if let data = NSData(contentsOfURL: (next)!){
+//                    
+//                    if let image = UIImage(data:data){
+//                        dispatch_async(dispatch_get_main_queue(), {
+//                            self!.userImageView.image = image
+//                        })
+//                    }
+//                }
+//                
+//                })
+//            
             
             
             

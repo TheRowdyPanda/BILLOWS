@@ -86,17 +86,16 @@ class ProfileViewController:UIViewController{
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
-        let leftPadding:CGFloat = 10.0;
-        let width = (self.view.frame.width - leftPadding*2.0)/2.0;
-        let height = width*(5.0/4.0)
+        let leftPadding:CGFloat = 8.0;
+        let width = (self.view.frame.width - leftPadding*2.0);
+        let height = width*(2.5/4.0)
         layout.sectionInset = UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: leftPadding)
         layout.itemSize = CGSize(width: width, height: height)
         
         
         layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 10
-        profileCollectionView!.collectionViewLayout = layout
-        
+        layout.minimumLineSpacing = 25
+        self.profileCollectionView.collectionViewLayout = layout
         
         
         //self.bindModel()
@@ -191,6 +190,7 @@ extension ProfileViewController:UICollectionViewDelegate, UICollectionViewDataSo
      
         let cell = self.profileViewModel?.wavePreviewCellForIndex(indexPath, cell: preCell)
         
+        
         let url = cell!.cityImageLink
         
         
@@ -198,7 +198,7 @@ extension ProfileViewController:UICollectionViewDelegate, UICollectionViewDataSo
         if( image == nil ) {
             
             // If the image does not exist, we testImage to download it
-            var imgURL:NSURL = url!
+            let imgURL:NSURL = url!
             
             // Download an NSData representation of the image at the URL
             let request: NSURLRequest = NSURLRequest(URL: imgURL)
@@ -318,5 +318,6 @@ extension ProfileViewController:UICollectionViewDelegate, UICollectionViewDataSo
         }
         
         
+        return UICollectionReusableView()
     }
 }

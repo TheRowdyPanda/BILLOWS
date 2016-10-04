@@ -39,6 +39,8 @@ class FirstViewController: UIViewController {
     ]
     
     var hasSignedIn = false;
+    var shouldGoToScraper = false;
+    
     
 //
     override func viewDidLoad() {
@@ -60,7 +62,15 @@ class FirstViewController: UIViewController {
 //        usleep(500)
         
         
-        let k = 3;
+        var k = 2;
+        
+        if(hasSignedIn == true){
+            k = 3;
+        }
+        
+        if(shouldGoToScraper == true){
+            k = 1
+        }
         
         switch k{
         case 1:
@@ -130,7 +140,7 @@ class FirstViewController: UIViewController {
             (result:Bool) in
             
             
-            (self.navigationController?.pushViewController(cityListViewController, animated: false))!
+            (self.navigationController?.pushViewController(cityListViewController, animated: true))!
             
         }
 

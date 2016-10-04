@@ -55,8 +55,8 @@ class SignInViewModel{
     
     
     func submitInformationToServers(){
-        fakeEmail = "1"
-        fakePassword = "2"
+        fakeEmail = "admin"
+        fakePassword = "password"
         if(userEmailString.value == fakeEmail && userPasswordString.value == fakePassword){
             self.hasSentData.value = true
         }

@@ -32,7 +32,7 @@ class WaveDashboardViewModel{
     }
     
     init(withPreview:WavePreview){
-        self.waveId = withPreview.waveId
+        self.waveId = withPreview.waveId.value
     }
     
 }

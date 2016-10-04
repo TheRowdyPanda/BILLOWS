@@ -10,8 +10,15 @@ import UIKit
 
 class CityFocusViewController:UIViewController{
     
+    deinit{
+        print("HELLO")
+        
+        
+        print("GOODBYE")
+    }
+    
     var hasBoundModel:Bool = false
-    var cityFocusViewModel:CityFocusViewModel!
+    weak var cityFocusViewModel:CityFocusViewModel!
     
     var imageCache:[NSURL: UIImage] = [NSURL: UIImage]()
     
@@ -35,22 +42,10 @@ class CityFocusViewController:UIViewController{
         // Do any additional setup after loading the view, typically from a nib.
     
         
-        //Changes the left hand bar button item. This will open up a side menu
-        //Get the height of the navigation bar. Take out padding, subject to change.
-        let barHeight = (self.navigationController?.navigationBar.frame.height)! - 8.0;
+        //We hide the navigation bar.
         
-        //create the custom button
-        let btn2 = UIButton()
-        btn2.backgroundColor = UIColor.darkGrayColor()
-        //set the image
-        //    btn1.setImage(UIImage(named: "profile.png"), forState: .Normal)
-        //set the frame
-        btn2.frame = CGRectMake(0, 0, barHeight, barHeight)
-        //add the selector function
-        btn2.addTarget(self, action: Selector("setupSearchView"), forControlEvents: .TouchUpInside)
-        //set the left bar button item of the view's navigation item to our custom button! Looks nice.
-        //  self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(customView:btn1), animated: true);
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(customView:btn2), animated: true)
+//        
+        self.navigationController?.navigationBarHidden = true
         
         
         wavePreviewCollectionView.registerNib(UINib(nibName: "CityFocusHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CityFocusHeaderView_ID")
@@ -68,33 +63,81 @@ class CityFocusViewController:UIViewController{
         self.wavePreviewCollectionView.delegate = self
         self.wavePreviewCollectionView.dataSource = self
         
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        let leftPadding:CGFloat = 8.0;
+        let width = (self.view.frame.width - leftPadding*2.0);
+        let height = width*(2.5/4.0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: leftPadding)
+        layout.itemSize = CGSize(width: width, height: height)
+        
+        
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 25
+        self.wavePreviewCollectionView.collectionViewLayout = layout
+        
+        
         self.bindModel()
+        
+//        self.testit({
+//            [weak self]
+//            (result:Bool) in
+//            print("DONE")
+////            
+////            sleep(2)
+//////            
+////            dispatch_async(dispatch_get_main_queue(), {
+////            [weak self] in
+////                self!.navigationController?.popViewControllerAnimated(true)
+////            })
+//        })
+//
+//        
+        
         print("Loaded Sign Up View")
     }
     
-    func bindModel(){
+    func testit(completion:(result:Bool)->Void){
+        dispatch_async(dispatch_get_global_queue (DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            for index in 0...20{
+                let x:CGFloat = 10.0*CGFloat(index) + 40.0
+                let width:CGFloat = 200.0;
+                let imageView = UIImageView(frame: CGRectMake(x, x, width, width))
+                
+                let url = NSURL(string: "http://www.partybusdetroit.com/assets/img/bachelor-party.jpg")
+                let image = UIImage(data: NSData(contentsOfURL: url!)!)
+                imageView.image = image
+                imageView.backgroundColor = UIColor.redColor()
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.view.addSubview(imageView)
+                })
+            }
+            completion(result: true)
+        })
         
+    }
+    func bindModel(){
+//        
         self.cityFocusViewModel.wavePreviewCount.producer.startWithNext({
+            [weak self]
             next in
             
-            if(next == self.wavePreviewCount){
+            if(next == self!.wavePreviewCount){
                 
             }
             else{
-                self.wavePreviewCount = next
+                self!.wavePreviewCount = next
                 
                /// dispatch_async(dispatch_get_main_queue(), {
-                    
-                        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
-                        dispatch_after(delayTime, dispatch_get_main_queue()) {
                 
                             dispatch_async(dispatch_get_main_queue(), {
+                                [weak self] in
                                 
                                 
-                    self.wavePreviewCollectionView.reloadData()
+                                    self!.wavePreviewCollectionView.reloadData()
                             })
                             
-                }
                // })
             }
         })
@@ -117,12 +160,31 @@ class CityFocusViewController:UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidLayoutSubviews() {
+       // sleep(5)
+        
+    }
 
+    
+    func didSelectBackButton(){
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            [weak self] in
+            self!.navigationController?.popViewControllerAnimated(true)
+        })
+//
+        //  self.removeFromParentViewController()
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+         self.navigationController?.navigationBarHidden = false
+    }
     
     
 }
 
-
+//
 extension CityFocusViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -148,54 +210,54 @@ extension CityFocusViewController:UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let preCell = collectionView.dequeueReusableCellWithReuseIdentifier("WavePreviewCell_ID", forIndexPath: indexPath) as! WavePreviewCell
+        weak var preCell = collectionView.dequeueReusableCellWithReuseIdentifier("WavePreviewCell_ID", forIndexPath: indexPath) as! WavePreviewCell
         
-        let cell = self.cityFocusViewModel?.wavePreviewCellForIndex(indexPath, cell: preCell)
+        weak var cell = cityFocusViewModel?.wavePreviewCellForIndex(indexPath, cell: preCell!)
+////        
+////        
+//        let url = cell!.cityImageLink
+//        
+////        
+//        var image = self.imageCache[url!]
+//        if( image == nil ) {
+//            
+//            // If the image does not exist, we testImage to download it
+//            var imgURL:NSURL = url!
+//            
+//            // Download an NSData representation of the image at the URL
+//            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+//            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+//                if error == nil {
+//                    image = UIImage(data: data!)
+//                    
+//                    // Store the image in to our cache
+//                    self.imageCache[url!] = image
+//                    dispatch_async(dispatch_get_main_queue(), {
+//                        if let cellToUpdate = collectionView.cellForItemAtIndexPath(indexPath) as? WavePreviewCell{
+//                            cellToUpdate.coverImageView?.image = image
+//                            
+//                        }
+//                    })
+//                }
+//                else {
+//                    print("Error: \(error!.localizedDescription)")
+//                    //  Crashlytics.sharedInstance().recordError(error!)
+//                }
+//            })
+//            
+//        }
+//        else {
+//            dispatch_async(dispatch_get_main_queue(), {
+//                if let cellToUpdate = collectionView.cellForItemAtIndexPath(indexPath) as? WavePreviewCell{
+//                    cellToUpdate.coverImageView?.image = image
+//                    
+//                }
+//            })
+//        }
+//        
+//        
         
-       // let cell = self.profileViewModel?.wavePreviewCellForIndex(indexPath, cell: preCell)
-        
-        let url = cell!.cityImageLink
-        
-        
-        var image = self.imageCache[url!]
-        if( image == nil ) {
-            
-            // If the image does not exist, we testImage to download it
-            var imgURL:NSURL = url!
-            
-            // Download an NSData representation of the image at the URL
-            let request: NSURLRequest = NSURLRequest(URL: imgURL)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
-                if error == nil {
-                    image = UIImage(data: data!)
-                    
-                    // Store the image in to our cache
-                    self.imageCache[url!] = image
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if let cellToUpdate = collectionView.cellForItemAtIndexPath(indexPath) as? WavePreviewCell{
-                            cellToUpdate.coverImageView?.image = image
-                            
-                        }
-                    })
-                }
-                else {
-                    print("Error: \(error!.localizedDescription)")
-                    //  Crashlytics.sharedInstance().recordError(error!)
-                }
-            })
-            
-        }
-        else {
-            dispatch_async(dispatch_get_main_queue(), {
-                if let cellToUpdate = collectionView.cellForItemAtIndexPath(indexPath) as? WavePreviewCell{
-                    cellToUpdate.coverImageView?.image = image
-                    
-                }
-            })
-        }
-        
-        
-        
+
         //     cell.heartsLabel.text = "12"
         
         return cell!
@@ -222,7 +284,7 @@ extension CityFocusViewController:UICollectionViewDelegate, UICollectionViewData
         }
         
         let width = self.view.frame.width
-        let height = width*(4.2/4.0)
+        let height = width*(2.8/4.0)
         return CGSizeMake(width, height)
     }
     
@@ -237,8 +299,10 @@ extension CityFocusViewController:UICollectionViewDelegate, UICollectionViewData
                 let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "CityFocusHeaderView_ID", forIndexPath: indexPath) as! CityFocusHeaderView
                 
 
-                headerView.setUpWith(self.cityFocusViewModel.city, completion: {
+                headerView.setUpWith(self.cityFocusViewModel.city!, completion: {
+                    [weak self]
                     (result:Bool) in
+                    headerView.backButton.addTarget(self!, action: #selector(CityFocusViewController.didSelectBackButton), forControlEvents: .TouchUpInside)
                     headerView.bindModel()
                 })
                 return headerView
@@ -260,7 +324,10 @@ extension CityFocusViewController:UICollectionViewDelegate, UICollectionViewData
             assert(false, "Unexpected element kind")
         }
         
+        return UICollectionReusableView()
         
     }
+    
+
 }
 

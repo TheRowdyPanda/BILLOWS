@@ -22,7 +22,7 @@ class GmailImportViewController:UIViewController{
     
     override func viewDidLoad() {
         
-        responseView.userInteractionEnabled = false;
+       // responseView.userInteractionEnabled = false;
         
         
         gmailImportModel?.setupScraper({
@@ -41,15 +41,36 @@ class GmailImportViewController:UIViewController{
         
         gmailImportModel?.authenticateScraper2({
             (result:Bool) in
+            
+            self.bindModel()
 
             if(result == true){
+                
                 
                 
                 self.presentLoginController()
             }
         })
         
+        
+        
     }
+    
+    func bindModel(){
+        self.gmailImportModel?.scraperString.producer.startWithNext({
+            [weak self]
+            next in
+            self?.responseView.text = next
+        })
+        
+        gmailImportModel?.dateString.producer.startWithNext({
+            [weak self]
+            next in
+            self?.updateLabel1.text = next
+        })
+        
+    }
+    
     
     func presentLoginController(){
         let authCon = gmailImportModel?.gmailScraper?.createAuthController()

@@ -7,9 +7,14 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 class GmailImportViewModel{
     var gmailScraper:GmailScraper?
+    
+    var scraperString = MutableProperty("")
+    
+    var dateString = MutableProperty("")
     
     
     func setupScraper(completion:(result:Bool)->Void){
@@ -17,6 +22,7 @@ class GmailImportViewModel{
         gmailScraper!.authenticate({
             (result:Bool) in
 
+            self.bindModel()
             completion(result: result)
             return
 //            if(result == true){
@@ -25,6 +31,25 @@ class GmailImportViewModel{
         })
         
         //completion(result: false)
+    }
+    
+    func bindModel(){
+        self.gmailScraper?.updateString.producer.startWithNext({
+            [weak self]
+            next in
+            self!.scraperString.value = next
+            
+            
+            print("GETTING NEXT")
+            print(next)
+        })
+        
+        self.gmailScraper?.currentDateString.producer.startWithNext({
+            [weak self]
+            next in
+            
+            self!.dateString.value = next
+        })
     }
     
     func authenticateScraper2(completion:(result:Bool)->Void){

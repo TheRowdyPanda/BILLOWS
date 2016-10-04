@@ -18,6 +18,7 @@ class ProfileViewModel{
 
     
     var user:User
+    
     init(user:User){
         self.user = user
 
@@ -54,7 +55,7 @@ class ProfileViewModel{
     func imageWithGradient(image:UIImage!) -> UIImage{
         
         UIGraphicsBeginImageContext(image.size)
-        var context = UIGraphicsGetCurrentContext()
+        let context = UIGraphicsGetCurrentContext()
         
         image.drawAtPoint(CGPointMake(0, 0))
         
@@ -69,13 +70,13 @@ class ProfileViewModel{
         let startPoint = CGPointMake(image.size.width / 2, image.size.height / 2)
         let endPoint = CGPointMake(image.size.width / 2, image.size.height)
         //CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0)
-        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, .DrawsBeforeStartLocation)
+        CGContextDrawLinearGradient(context!, gradient!, startPoint, endPoint, .DrawsBeforeStartLocation)
         
         let finalImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         
-        return finalImage
+        return finalImage!
     }
     
     
@@ -158,19 +159,19 @@ class ProfileViewModel{
         
         let wavePreview = self.user.recentWavePreviews![indexPath.row]
         
-        let startString = wavePreview.name! + " in "
+        let startString = wavePreview.name.value + " in "
         
         let attributedString = NSMutableAttributedString(string:startString)
         
         let attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(15)]
-        let boldString = NSMutableAttributedString(string:wavePreview.cityName!, attributes:attrs)
+        let boldString = NSMutableAttributedString(string:wavePreview.cityName.value, attributes:attrs)
         
         attributedString.appendAttributedString(boldString)
         
         
         
         cell.waveNameLabel.attributedText = attributedString
-        cell.cityImageLink = wavePreview.imageLink
+        cell.cityImageLink = wavePreview.imageLink.value
         
         
         return cell

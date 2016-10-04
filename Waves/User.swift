@@ -23,6 +23,8 @@ struct User{
     //var coverImageLink:NSURL?
     var coverImageLink = MutableProperty(NSURL(string:""))
     var profileImageLink = MutableProperty(NSURL(string:""))
+    var coverImageData = MutableProperty(NSData(base64EncodedString: "", options: []))
+    var profileImageData = MutableProperty(NSData(base64EncodedString: "", options: []))
     
     var numberWaves = MutableProperty(0)
     var numberMiles = MutableProperty(0)
@@ -57,13 +59,63 @@ struct User{
         
         
         //simulates server request
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-                
-            
+//        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+//        dispatch_after(delayTime, dispatch_get_main_queue()) {
+//                
+        
             self.coverImageLink.value = NSURL(string: "http://1.bp.blogspot.com/-SmUEFeHmKEQ/UcbZrhICk5I/AAAAAAAAQDk/so64PKEv7Ko/s1600/url444.jpg")
+        
+        self.profileImageLink.value = NSURL(string: "http://1.bp.blogspot.com/-SmUEFeHmKEQ/UcbZrhICk5I/AAAAAAAAQDk/so64PKEv7Ko/s1600/url444.jpg")
+        
+        
+        self.loadCoverImageData()
+        self.loadProfileImageData()
 
-        }
+    //    }
+    }
+    
+    func loadCoverImageData(){
+        let url = self.coverImageLink.value
+        let imgURL:NSURL = url!
+        // Download an NSData representation of the image at the URL
+        let request: NSURLRequest = NSURLRequest(URL: imgURL)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {
+            (response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+            if error == nil {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.coverImageData.value = data
+                    
+                    })
+            }
+            else {
+                print("Error: \(error!.localizedDescription)")
+                //  Crashlytics.sharedInstance().recordError(error!)
+            }
+            })
+        
+        
+    }
+    
+    func loadProfileImageData(){
+        let url = self.coverImageLink.value
+        let imgURL:NSURL = url!
+        // Download an NSData representation of the image at the URL
+        let request: NSURLRequest = NSURLRequest(URL: imgURL)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {
+            (response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+            if error == nil {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.profileImageData.value = data
+                    
+                })
+            }
+            else {
+                print("Error: \(error!.localizedDescription)")
+                //  Crashlytics.sharedInstance().recordError(error!)
+            }
+        })
+        
+        
     }
     
     func loadInformationWithId(){
@@ -83,10 +135,10 @@ struct User{
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             
         
-        var otherWavePreview = WavePreview()
-        otherWavePreview.cityName = "Test City Name"
-        otherWavePreview.name = "Test Name"
-        otherWavePreview.imageLink = NSURL(string: "")
+        let otherWavePreview = WavePreview()
+        otherWavePreview.cityName.value = "Test City Name"
+        otherWavePreview.name.value = "Test Name"
+        otherWavePreview.imageLink.value = NSURL(string: "")
         
         let otherPreviews = [otherWavePreview, otherWavePreview, otherWavePreview, otherWavePreview, otherWavePreview];
         
