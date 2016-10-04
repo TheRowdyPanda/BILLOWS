@@ -100,6 +100,7 @@
 		8E670A8B1D9CCF94000C85B7 /* WavesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesUITests.swift; sourceTree = "<group>"; };
 		8E670A8D1D9CCF94000C85B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E670A9D1D9CCFE1000C85B7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8EE265491DA3922D00939219 /* Waves.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Waves.entitlements; sourceTree = "<group>"; };
 		8EF8029C1DA1B12300ED1343 /* WavePreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavePreviewCell.swift; sourceTree = "<group>"; };
 		8EF8029E1DA1B13700ED1343 /* WavePreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WavePreviewCell.xib; sourceTree = "<group>"; };
 		8EFBE0061D9CDACC006FD731 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 		8E670A671D9CCF93000C85B7 /* Waves */ = {
 			isa = PBXGroup;
 			children = (
+				8EE265491DA3922D00939219 /* Waves.entitlements */,
 				8EFBE0141D9CDB55006FD731 /* Views */,
 				8E670A9C1D9CCFC2000C85B7 /* Navigation Classes */,
 				8E670A9B1D9CCFBB000C85B7 /* Utility Classes */,
@@ -407,7 +409,13 @@
 				TargetAttributes = {
 					8E670A641D9CCF93000C85B7 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 6835C33SXY;
 						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					8E670A7B1D9CCF94000C85B7 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -780,7 +788,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Waves/Waves.entitlements;
+				DEVELOPMENT_TEAM = 6835C33SXY;
 				INFOPLIST_FILE = Waves/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rijulgupta.Waves;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -794,7 +805,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Waves/Waves.entitlements;
+				DEVELOPMENT_TEAM = 6835C33SXY;
 				INFOPLIST_FILE = Waves/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rijulgupta.Waves;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -10,7 +10,7 @@ import Foundation
 import ReactiveCocoa
 
 class GmailImportViewModel{
-    var gmailScraper:GmailScraper?
+    var gmailScraper:GmailScraper!
     
     var scraperString = MutableProperty("")
     
@@ -54,11 +54,13 @@ class GmailImportViewModel{
     
     func authenticateScraper2(completion:(result:Bool)->Void){
         
-        gmailScraper?.authenticate2({
+        gmailScraper!.authenticate2({
             (tag:Int) in
             
             if(tag == 1){
-                self.startFetch()
+                
+                
+            //    self.startFetch()
                 completion(result: false)
                 return
             }
@@ -74,11 +76,14 @@ class GmailImportViewModel{
             }
         
         })
+        return
         
     }
     
     func startFetch(){
-        gmailScraper?.fetchLabels()
+        
+        
+       // gmailScraper?.fetchLabels()
     }
     
     func presentLogin(){

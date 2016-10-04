@@ -9,6 +9,7 @@ target 'Waves' do
   pod 'ReactiveCocoa', '= 4.0.0'
   pod 'GoogleAPIClientForREST/Gmail'
   pod 'GTMOAuth2'
+  pod 'Kanna', '~> 1.1.0'
 
   target 'WavesTests' do
     inherit! :search_paths

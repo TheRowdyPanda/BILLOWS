@@ -11,6 +11,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.4)
   - GTMSessionFetcher/Full (1.1.4):
     - GTMSessionFetcher/Core (= 1.1.4)
+  - Kanna (1.1.0)
   - ReactiveCocoa (4.0.0):
     - ReactiveCocoa/UI (= 4.0.0)
     - Result (~> 1.0.1)
@@ -27,15 +28,17 @@ PODS:
 DEPENDENCIES:
   - GoogleAPIClientForREST/Gmail
   - GTMOAuth2
+  - Kanna (~> 1.1.0)
   - ReactiveCocoa (= 4.0.0)
 
 SPEC CHECKSUMS:
   GoogleAPIClientForREST: dfe838db7e0c20ced354549d49c81e18674a64c6
   GTMOAuth2: bdb12f3e0d2110bfe585f6151230b883beb4d042
   GTMSessionFetcher: 174bc61d5238f81f9ddb807b0b0170420f67de85
+  Kanna: 355ed0193e5d8caf4fd996856b5bc98d586c11b6
   ReactiveCocoa: 69be555be30674b07a86b60a91b855063841acc0
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
 
-PODFILE CHECKSUM: 6de411b627a9364d1bd89d5e8b2d2a9796a21759
+PODFILE CHECKSUM: 0d712e39f5b6de3b6d201d07f7491a06ee600fd3
 
 COCOAPODS: 1.0.1

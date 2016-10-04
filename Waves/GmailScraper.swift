@@ -10,6 +10,7 @@ import Foundation
 import GoogleAPIClientForREST
 import GTMOAuth2
 import ReactiveCocoa
+import Kanna
 
 class GmailScraper:UIViewController{
     private let kKeychainItemName = "Gmail API"
@@ -21,18 +22,19 @@ class GmailScraper:UIViewController{
     // resetting the iOS simulator or uninstall the app.
     private let scopes = [kGTLRAuthScopeGmailReadonly]
     
+    var authDelegate:GmailImportViewController?
     
     public let service = GTLRGmailService()
     
 //    override func viewDidLoad() {
 //        
-//        output.frame = view.bounds
-//        output.editable = false
-//        output.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-//        output.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-//        
-//        view.addSubview(output);
-//        
+////        output.frame = view.bounds
+////        output.editable = false
+////        output.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+////        output.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+////        
+////        view.addSubview(output);
+////        
 //        
 //        self.authenticate()
 //    }
@@ -40,7 +42,7 @@ class GmailScraper:UIViewController{
 //    override func viewDidAppear(animated: Bool) {
 //        self.authenticate2()
 //    }
-//    
+////
     
     func authenticate(completion:(result:Bool)->Void){
         
@@ -50,7 +52,7 @@ class GmailScraper:UIViewController{
             clientSecret: nil) {
             service.authorizer = auth
             completion(result:true)
-            return
+           // return
         }
         
         completion(result:false)
@@ -59,8 +61,10 @@ class GmailScraper:UIViewController{
     
     func authenticate2(completion:(tag:Int)->Void){
         
-        if let authorizer = service.authorizer,
-            canAuth = authorizer.canAuthorize where canAuth {
+        if let authorizer = service.authorizer{
+            let canAuth = authorizer.canAuthorize
+//        if let authorizer = service.authorizer,
+//            canAuth = authorizer.canAuthorize where canAuth {
             completion(tag:1)
             return
           //  fetchLabels()
@@ -97,11 +101,12 @@ class GmailScraper:UIViewController{
             
             
 //             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-    self.service.executeQuery(query, delegate: self, didFinishSelector:Selector("displayResultWithTicket:finishedWithObject:error:")
+    self.service.executeQuery(query, delegate: self, didFinishSelector:#selector(GmailScraper.displayResultWithTicket(_:finishedWithObject:error:))
             )
           //  })
             
         }
+    
     
 //    // When the view loads, create necessary subviews
 //    // and initialize the Gmail API service
@@ -164,7 +169,7 @@ class GmailScraper:UIViewController{
     }
     
   //  func decodeBodyFromPart(body:GTLRGmail_MessagePartBody){
-    func decodeBodyFromString(body:String){
+    func decodeBodyFromString(body:String, isHtml:Bool = false){
         let bodyData = body
         
         
@@ -182,6 +187,15 @@ class GmailScraper:UIViewController{
         let decodedData = NSData(base64EncodedString: base64DataString, options:NSDataBase64DecodingOptions(rawValue: 0))
         let decodedString = NSString(data: decodedData!, encoding: NSUTF8StringEncoding)
         
+        
+        if(isHtml == true){
+            if let daString = decodedString as? String{
+                self.parseHTML(daString)
+                return
+            }
+        }
+        
+        
         print("BODY:")
         print(decodedString)
         
@@ -198,8 +212,29 @@ class GmailScraper:UIViewController{
         }
         
         
+        
         updateString.value = newString
         
+        
+    }
+    
+    func parseHTML(html:String){
+        
+        if let doc = HTML(html: html, encoding:NSUTF8StringEncoding) {
+            print(doc.title)
+            
+            // Search for nodes by CSS
+            for link in doc.css("a, link") {
+                print(link.text)
+                print(link["href"])
+            }
+            
+            // Search for nodes by XPath
+            for link in doc.xpath("//a | //link") {
+                print(link.text)
+                print(link["href"])
+            }
+        }
         
     }
     
@@ -414,18 +449,47 @@ class GmailScraper:UIViewController{
     
 //    
     // Creates the auth controller for authorizing access to Gmail API
-    public func createAuthController() -> GTMOAuth2ViewControllerTouch {
+    public func createAuthController(delegate:GmailImportViewController) -> GTMOAuth2ViewControllerTouch {
         let scopeString = scopes.joinWithSeparator(" ")
+        
+        
         return GTMOAuth2ViewControllerTouch(
             scope: scopeString,
             clientID: kClientID,
             clientSecret: nil,
             keychainItemName: kKeychainItemName,
-            delegate: self,
+            delegate: delegate,
             finishedSelector: "viewController:finishedWithAuth:error:"
         )
     }
     
+    
+    // Handle completion of the authorization process, and update the Gmail API
+    // with the new credentials.
+    func viewController(vc : UIViewController,
+                        finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?) {
+        
+        
+        
+        
+        if let error = error {
+            
+            self.service.authorizer = nil
+            // service.authorizer = nil
+            // showAlert("Authentication Error", message: error.localizedDescription)
+            return
+        }
+        
+        self.service.authorizer = authResult
+//        self.authenticate({
+//            next in
+//            print(next)
+//            return
+//        })
+        //service.authorizer = authResult
+        vc.dismissViewControllerAnimated(true, completion: nil)
+       // dismissViewControllerAnimated(true, completion: nil)
+    }
     
     
     // Helper for showing an alert
