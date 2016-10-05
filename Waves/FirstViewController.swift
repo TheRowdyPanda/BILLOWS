@@ -98,10 +98,10 @@ class FirstViewController: UIViewController {
 //            (result:Bool) in
 //        })
         
-        let waveDModel = WaveDashboardViewModel(withId:"id1", completion: {
-            (result:Bool) in
-        })
-        
+//        let waveDModel = WaveDashboardViewModel(withId:"id1", completion: {
+//            (result:Bool) in
+//        })
+//        
         
     }
     

@@ -205,6 +205,29 @@ extension CityFocusViewController:UICollectionViewDelegate, UICollectionViewData
     
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        
+        let waveP = cityFocusViewModel.wavePreviewForIndexPath(indexPath)
+        
+        
+        var waveDashboardViewModel = WaveDashboardViewModel()
+        waveDashboardViewModel.setupWithWavePreview(waveP)
+        
+        
+        
+        
+        
+        /*weak var*/let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        weak var waveDashboardViewController = mainStoryboard.instantiateViewControllerWithIdentifier("WaveDashboardViewController_ID") as! WaveDashboardViewController
+        
+        waveDashboardViewController!.setUpWith(waveDashboardViewModel){
+            [weak self]
+            (result:Bool) in
+            self!.navigationController?.pushViewController(waveDashboardViewController!, animated: true)
+            
+        }
+        
+        
         print("CLICK")
     }
     

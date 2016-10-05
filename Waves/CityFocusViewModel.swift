@@ -96,4 +96,14 @@ class CityFocusViewModel{
     }
     
     
+    func wavePreviewForIndexPath(indexPath:NSIndexPath)->WavePreview
+    {
+        
+        let wavePreview = city?.wavePreviews[indexPath.row]
+        // let cityModel = CityFocusViewModel(withCity: city)
+        return wavePreview!
+    }
+
+    
+    
 }

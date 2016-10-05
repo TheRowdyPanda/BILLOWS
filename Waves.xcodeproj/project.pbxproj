@@ -16,6 +16,10 @@
 		8E670A811D9CCF94000C85B7 /* WavesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E670A801D9CCF94000C85B7 /* WavesTests.swift */; };
 		8E670A8C1D9CCF94000C85B7 /* WavesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E670A8B1D9CCF94000C85B7 /* WavesUITests.swift */; };
 		8E670A9E1D9CCFE1000C85B7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E670A9D1D9CCFE1000C85B7 /* HomeViewController.swift */; };
+		8EE2654B1DA4510500939219 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2654A1DA4510500939219 /* Location.swift */; };
+		8EE2654D1DA45C4300939219 /* SocialExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2654C1DA45C4300939219 /* SocialExplorer.swift */; };
+		8EE2654F1DA479E500939219 /* WaveFocusHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2654E1DA479E500939219 /* WaveFocusHeaderView.swift */; };
+		8EE265511DA479F300939219 /* WaveFocusHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE265501DA479F300939219 /* WaveFocusHeaderView.xib */; };
 		8EF8029D1DA1B12300ED1343 /* WavePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF8029C1DA1B12300ED1343 /* WavePreviewCell.swift */; };
 		8EF8029F1DA1B13700ED1343 /* WavePreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EF8029E1DA1B13700ED1343 /* WavePreviewCell.xib */; };
 		8EFBE0071D9CDACC006FD731 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBE0061D9CDACC006FD731 /* FirstViewController.swift */; };
@@ -101,6 +105,10 @@
 		8E670A8D1D9CCF94000C85B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E670A9D1D9CCFE1000C85B7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8EE265491DA3922D00939219 /* Waves.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Waves.entitlements; sourceTree = "<group>"; };
+		8EE2654A1DA4510500939219 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		8EE2654C1DA45C4300939219 /* SocialExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialExplorer.swift; sourceTree = "<group>"; };
+		8EE2654E1DA479E500939219 /* WaveFocusHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveFocusHeaderView.swift; sourceTree = "<group>"; };
+		8EE265501DA479F300939219 /* WaveFocusHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaveFocusHeaderView.xib; sourceTree = "<group>"; };
 		8EF8029C1DA1B12300ED1343 /* WavePreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavePreviewCell.swift; sourceTree = "<group>"; };
 		8EF8029E1DA1B13700ED1343 /* WavePreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WavePreviewCell.xib; sourceTree = "<group>"; };
 		8EFBE0061D9CDACC006FD731 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +270,8 @@
 				8EFBE0201D9CDBA5006FD731 /* WaveChat.swift */,
 				8EFBE01D1D9CDB9D006FD731 /* WavePreview.swift */,
 				8EFBE0101D9CDB16006FD731 /* City.swift */,
+				8EE2654A1DA4510500939219 /* Location.swift */,
+				8EE2654C1DA45C4300939219 /* SocialExplorer.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -319,6 +329,8 @@
 				8EFBE0511D9F00D9006FD731 /* UserPreviewFaceView.swift */,
 				8EF8029C1DA1B12300ED1343 /* WavePreviewCell.swift */,
 				8EF8029E1DA1B13700ED1343 /* WavePreviewCell.xib */,
+				8EE2654E1DA479E500939219 /* WaveFocusHeaderView.swift */,
+				8EE265501DA479F300939219 /* WaveFocusHeaderView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -459,6 +471,7 @@
 				8EFBE04E1D9DF7C3006FD731 /* CityFocusHeaderView.xib in Resources */,
 				8EFBE0341D9CDC09006FD731 /* ProfileHeaderView.xib in Resources */,
 				8EFBE0181D9CDB6B006FD731 /* WavePreviewCell_old.xib in Resources */,
+				8EE265511DA479F300939219 /* WaveFocusHeaderView.xib in Resources */,
 				8EFBE0401D9CDCFB006FD731 /* Main.storyboard in Resources */,
 				8EFBE01C1D9CDB75006FD731 /* WavePreviewHeaderView.xib in Resources */,
 				8E670A731D9CCF93000C85B7 /* Assets.xcassets in Resources */,
@@ -611,6 +624,7 @@
 			files = (
 				8EFBE0441D9DBA51006FD731 /* SignInViewModel.swift in Sources */,
 				8E670A6B1D9CCF93000C85B7 /* ViewController.swift in Sources */,
+				8EE2654B1DA4510500939219 /* Location.swift in Sources */,
 				8EFBE0171D9CDB6B006FD731 /* WavePreviewCell_old.swift in Sources */,
 				8EFBE0131D9CDB42006FD731 /* YSegmentedControl.swift in Sources */,
 				8EFBE00F1D9CDAFF006FD731 /* CityFocusViewModel.swift in Sources */,
@@ -628,6 +642,7 @@
 				8EFBE04C1D9DF7B1006FD731 /* CityFocusHeaderView.swift in Sources */,
 				8EFBE0071D9CDACC006FD731 /* FirstViewController.swift in Sources */,
 				8EFBE01B1D9CDB75006FD731 /* WavePreviewHeaderView.swift in Sources */,
+				8EE2654D1DA45C4300939219 /* SocialExplorer.swift in Sources */,
 				8E670A711D9CCF93000C85B7 /* Waves.xcdatamodeld in Sources */,
 				8EFBE00B1D9CDAEB006FD731 /* CityListViewModel.swift in Sources */,
 				8EFBE0481D9DC086006FD731 /* GmailImportViewModel.swift in Sources */,
@@ -638,6 +653,7 @@
 				8EFBE0111D9CDB16006FD731 /* City.swift in Sources */,
 				8EFBE0501D9E5735006FD731 /* WaveDashboardViewController.swift in Sources */,
 				8EFBE02B1D9CDBD0006FD731 /* SignUpViewController.swift in Sources */,
+				8EE2654F1DA479E500939219 /* WaveFocusHeaderView.swift in Sources */,
 				8EFBE0221D9CDBA5006FD731 /* WaveChat.swift in Sources */,
 				8EFBE00E1D9CDAFF006FD731 /* CityFocusViewController.swift in Sources */,
 				8EFBE03A1D9CDC25006FD731 /* GmailScraper.swift in Sources */,

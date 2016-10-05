@@ -18,6 +18,7 @@ class WavePreview{
     var imageLink = MutableProperty(NSURL(string:""))
     var coverImage = MutableProperty(UIImage())
     var coverImageData = MutableProperty(NSData(base64EncodedString: "", options: []))
+    var userPreviews:[UserPreview]?
     
     
     
